@@ -15,20 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product")
-@ApiGroup(WebConstant.PRODUCT_DESC)
+@ApiGroup(value = WebConstant.PRODUCT_DESC, index = 2)
 public class ProductExampleController {
 
-    @ApiMethod(title = "商品测试接口", develop = WebConstant.PRODUCT_DEVELOP1)
-    @GetMapping("/demo")
-    public JsonResult<PageInfo<DemoVo>> demo(@ApiParam(desc = "商品名") String name,
-                                             DemoDto demoDto, Page page) {
+    @ApiMethod(title = "商品列表", develop = WebConstant.PRODUCT_DEVELOP1)
+    @GetMapping
+    public JsonResult<PageInfo<DemoVo>> demo(@ApiParam(desc = "商品名") String name, Page page) {
         return JsonResult.success("test");
     }
 
-    @ApiMethod(title = "商品测试接口2", develop = WebConstant.PRODUCT_DEVELOP2)
-    @GetMapping("/demo2")
-    public JsonResult<PageInfo<DemoVo>> demo2(@ApiParam(desc = "yy") String name,
-                                             DemoDto demoDto) {
+    @ApiMethod(title = "商品详情", develop = WebConstant.PRODUCT_DEVELOP2)
+    @GetMapping("/info")
+    public JsonResult<DemoVo> demo2(@ApiParam(desc = "yy") Long id, DemoDto demoDto) {
         return JsonResult.success("test2");
     }
 }
