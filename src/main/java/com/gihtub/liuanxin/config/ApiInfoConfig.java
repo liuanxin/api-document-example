@@ -18,7 +18,7 @@ public class ApiInfoConfig {
     public DocumentCopyright apiCopyright() {
         return new DocumentCopyright()
                 .setTitle(WebConstant.PROJECT_TITLE)
-                .setContact(WebConstant.PROJECT_CONTACT)
+                .setTeam(WebConstant.PROJECT_CONTACT)
                 .setVersion(WebConstant.PROJECT_VERSION)
                 .setCopyright(WebConstant.PROJECT_COPYRIGHT)
                 .setOnline(online);
