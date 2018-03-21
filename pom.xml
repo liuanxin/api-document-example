@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
-        <api-document.version>0.0.7</api-document.version>
+        <api-document.version>0.0.8</api-document.version>
         <lombok.version>1.16.20</lombok.version>
     </properties>
 
@@ -37,4 +37,17 @@
             <version>${lombok.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
