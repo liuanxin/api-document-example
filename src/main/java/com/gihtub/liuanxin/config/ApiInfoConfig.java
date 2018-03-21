@@ -28,9 +28,9 @@ public class ApiInfoConfig {
                 .setTeam(WebConstant.PROJECT_CONTACT)
                 .setVersion(WebConstant.PROJECT_VERSION)
                 .setCopyright(WebConstant.PROJECT_COPYRIGHT)
-                .setOnline(online)
                 .setIgnoreUrlSet(ignoreUrl())
-                .setGlobalResponse(globalResponse());
+                .setGlobalResponse(globalResponse())
+                .setOnline(online);
     }
 
     private Set<String> ignoreUrl() {

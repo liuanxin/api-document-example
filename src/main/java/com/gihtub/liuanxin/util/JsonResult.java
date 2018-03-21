@@ -17,7 +17,7 @@ public class JsonResult<T> {
      *
      * @see JsonCode
      */
-    @ApiReturn(desc = "返回码. 根据此值控制页面扭转: 0.显示 msg, 1.业务处理, 10.导向登录页")
+    @ApiReturn(desc = "返回码. 根据此值控制页面扭转")
     private int code;
 
     /** 返回说明. 如: 用户名密码错误, 收货地址添加成功 等 */

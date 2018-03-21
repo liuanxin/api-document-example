@@ -29,8 +29,6 @@ public class UserExampleController {
     @ApiMethod(title = "用户详情", develop = WebConstant.USER_DEVELOP2, index = 2)
     @ApiResponses({
             @ApiResponse(code = 200, msg = "请求成功"),
-            @ApiResponse(code = 400, msg = "请求参数有误"),
-            @ApiResponse(code = 403, msg = "无权限"),
             @ApiResponse(code = 500, msg = "请求异常")
     })
     @PostMapping("/{id}")
