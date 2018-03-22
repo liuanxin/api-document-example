@@ -30,6 +30,7 @@ public class ApiInfoConfig {
                 .setCopyright(WebConstant.PROJECT_COPYRIGHT)
                 .setIgnoreUrlSet(ignoreUrl())
                 .setGlobalResponse(globalResponse())
+                //.setCommentInReturnExample(false)
                 .setOnline(online);
     }
 
