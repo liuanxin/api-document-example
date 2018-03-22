@@ -20,7 +20,7 @@ public class UserExampleController {
         return JsonResult.success("test1");
     }
 
-    @ApiMethod(title = "用户信息", develop = WebConstant.USER_DEVELOP1, index = 2)
+    @ApiMethod(title = "用户信息", develop = WebConstant.USER_DEVELOP1, index = 2, commentInReturnExample = false)
     @GetMapping("/info")
     public JsonResult<PageInfo<DemoVo>> demo2() {
         return JsonResult.success("test2");
