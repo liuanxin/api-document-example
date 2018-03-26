@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @ApiGroup(value = WebConstant.USER_DESC, index = 1)
 public class UserExampleController {
 
-    @ApiMethod(title = "用户列表", develop = WebConstant.USER_DEVELOP1, index = 1)
+    @ApiMethod(title = "用户列表", develop = WebConstant.USER_DEVELOP1, index = 1, desc = "管理员查询用户")
     @GetMapping
     public JsonResult<PageInfo<DemoVo>> demo1(DemoDto demoDto, Page page) {
         return JsonResult.success("test1");
@@ -26,7 +26,7 @@ public class UserExampleController {
         return JsonResult.success("test2");
     }
 
-    @ApiMethod(title = "用户详情", develop = WebConstant.USER_DEVELOP2)
+    @ApiMethod(title = "用户详情", develop = WebConstant.USER_DEVELOP2, desc = "用户在页面头上点击自己的名字或头像时")
     @ApiResponses({
             @ApiResponse(code = 200, msg = "请求成功"),
             @ApiResponse(code = 500, msg = "请求异常")
