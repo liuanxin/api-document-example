@@ -13,11 +13,11 @@ import lombok.Setter;
 public class JsonResult<T> {
 
     /**
-     * 返回码. 前台根据此值控制页面扭转.
+     * 返回码
      *
      * @see JsonCode
      */
-    @ApiReturn(desc = "返回码. 根据此值控制页面扭转")
+    @ApiReturn(desc = "返回码")
     private int code;
 
     /** 返回说明. 如: 用户名密码错误, 收货地址添加成功 等 */
@@ -44,6 +44,11 @@ public class JsonResult<T> {
     /** 请求失败 */
     public static <T> JsonResult<T> fail(String msg) {
         return new JsonResult<T>(JsonCode.FAIL, msg);
+    }
+
+    /** 参数错误 */
+    public static <T> JsonResult<T> badRequest(String msg) {
+        return new JsonResult<T>(JsonCode.BAD_REQUEST, msg);
     }
 
     /** 未登录 */
