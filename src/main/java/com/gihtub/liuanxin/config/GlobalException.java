@@ -58,11 +58,7 @@ public class GlobalException {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<JsonResult> missParam(MissingServletRequestParameterException e) {
-        /*
-        if (LogUtil.ROOT_LOG.isDebugEnabled()) {
-            LogUtil.ROOT_LOG.debug(e.getMessage(), e);
-        }
-        */
+        // debug log
         Matcher matcher = REQUIRED_PARAMETER.matcher(e.getMessage());
         String showMsg = "缺少必须的参数";
         if (matcher.find()) {
