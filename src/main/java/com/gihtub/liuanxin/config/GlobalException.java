@@ -22,8 +22,6 @@ public class GlobalException {
 
     private static final HttpStatus FAIL = HttpStatus.INTERNAL_SERVER_ERROR;
 
-    private static final Pattern REQUIRED_PARAMETER = Pattern.compile(".*?\'(.*?)\'.*?");
-
     @Value("${online:false}")
     private boolean online;
 
@@ -53,18 +51,15 @@ public class GlobalException {
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<JsonResult> noHandler(NoHandlerFoundException e) {
         // debug log
-        return new ResponseEntity<>(JsonResult.notFound(), HttpStatus.NOT_FOUND);
+        String msg = String.format("Not found(%s %s)", e.getHttpMethod(), e.getRequestURL());
+        return new ResponseEntity<>(JsonResult.notFound(msg), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<JsonResult> missParam(MissingServletRequestParameterException e) {
         // debug log
-        Matcher matcher = REQUIRED_PARAMETER.matcher(e.getMessage());
-        String showMsg = "缺少必须的参数";
-        if (matcher.find()) {
-            showMsg += "(" + matcher.group(1) + ")";
-        }
-        return new ResponseEntity<>(JsonResult.badRequest(showMsg), HttpStatus.BAD_REQUEST);
+        String msg = String.format("Missing required param(%s), type(%s)", e.getParameterName(), e.getParameterType());
+        return new ResponseEntity<>(JsonResult.badRequest(msg), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Throwable.class)
