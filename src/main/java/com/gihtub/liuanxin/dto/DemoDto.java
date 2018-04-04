@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class DemoDto {
 
-    @ApiParam(must = true, desc = "用户 id")
+    @ApiParam(value = "用户 id", must = true)
     private Long userId;
 
-    @ApiParam(dataType = "int", desc = "性别")
+    @ApiParam(value = "性别", dataType = "int")
     private Gender gender;
 }

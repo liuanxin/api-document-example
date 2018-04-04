@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class DemoVo {
 
-    @ApiReturn(desc = "用户 id")
+    @ApiReturn("用户 id")
     private String userId;
 
-    @ApiReturn(type = "int", desc = "性别")
+    @ApiReturn(value = "性别", type = "int")
     private Gender gender;
 }

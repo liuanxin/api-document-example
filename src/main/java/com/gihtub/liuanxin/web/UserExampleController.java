@@ -32,19 +32,19 @@ public class UserExampleController {
             @ApiResponse(code = 500, msg = "请求异常")
     })
     @PostMapping("/{id}")
-    public JsonResult<DemoVo> demo3(@PathVariable("id") @ApiParam(desc = "用户 id", example = "1") Long id) {
+    public JsonResult<DemoVo> demo3(@PathVariable("id") @ApiParam(value = "用户 id", example = "1") Long id) {
         return JsonResult.success("test3");
     }
 
     @ApiMethod(title = "用户操作", develop = Develop.USER_DEVELOP1)
     @PostMapping("/operate")
-    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(desc = "动作", paramType = ParamType.Header) String type) {
+    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(value = "动作", paramType = ParamType.Header) String type) {
         return JsonResult.success("test4");
     }
 
     @ApiIgnore
     @GetMapping("/ignore-demo")
-    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(desc = "xxx") String name, DemoDto demoDto) {
+    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam("xxx") String name, DemoDto demoDto) {
         return JsonResult.success("test4");
     }
 }

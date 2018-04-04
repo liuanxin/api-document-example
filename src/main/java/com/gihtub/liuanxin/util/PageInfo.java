@@ -10,9 +10,9 @@ import java.util.List;
 @Setter
 public class PageInfo<T> {
 
-    @ApiReturn(desc = "总条数. 根据此值和 page limit 构建分页按钮")
+    @ApiReturn("总条数. 根据此值和 page limit 构建分页按钮")
     private int total;
 
-    @ApiReturn(desc = "当前页的数据")
+    @ApiReturn("当前页的数据")
     private List<T> list;
 }

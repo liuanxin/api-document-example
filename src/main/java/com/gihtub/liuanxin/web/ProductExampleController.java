@@ -20,13 +20,13 @@ public class ProductExampleController {
 
     @ApiMethod(title = "商品列表", develop = Develop.PRODUCT_DEVELOP1)
     @GetMapping
-    public JsonResult<PageInfo<DemoVo>> demo(@ApiParam(desc = "商品名") String name, Page page) {
+    public JsonResult<PageInfo<DemoVo>> demo(@ApiParam("商品名") String name, Page page) {
         return JsonResult.success("test");
     }
 
     @ApiMethod(title = "商品详情", develop = Develop.PRODUCT_DEVELOP2)
     @GetMapping("/info")
-    public JsonResult<DemoVo> demo2(@ApiParam(desc = "yy") Long id, DemoDto demoDto) {
+    public JsonResult<DemoVo> demo2(@ApiParam("yy") Long id, DemoDto demoDto) {
         return JsonResult.success("test2");
     }
 }
