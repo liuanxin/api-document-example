@@ -1,6 +1,6 @@
 package com.gihtub.liuanxin.web;
 
-import com.gihtub.liuanxin.constant.WebConstant;
+import com.gihtub.liuanxin.constant.Develop;
 import com.gihtub.liuanxin.dto.DemoDto;
 import com.gihtub.liuanxin.util.JsonResult;
 import com.gihtub.liuanxin.util.Page;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product")
-@ApiGroup(value = WebConstant.PRODUCT_DESC, index = 2)
+@ApiGroup(value = Develop.PRODUCT_DESC, index = 2)
 public class ProductExampleController {
 
-    @ApiMethod(title = "商品列表", develop = WebConstant.PRODUCT_DEVELOP1)
+    @ApiMethod(title = "商品列表", develop = Develop.PRODUCT_DEVELOP1)
     @GetMapping
     public JsonResult<PageInfo<DemoVo>> demo(@ApiParam(desc = "商品名") String name, Page page) {
         return JsonResult.success("test");
     }
 
-    @ApiMethod(title = "商品详情", develop = WebConstant.PRODUCT_DEVELOP2)
+    @ApiMethod(title = "商品详情", develop = Develop.PRODUCT_DEVELOP2)
     @GetMapping("/info")
     public JsonResult<DemoVo> demo2(@ApiParam(desc = "yy") Long id, DemoDto demoDto) {
         return JsonResult.success("test2");

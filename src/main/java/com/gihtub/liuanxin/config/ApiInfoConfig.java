@@ -1,6 +1,6 @@
 package com.gihtub.liuanxin.config;
 
-import com.gihtub.liuanxin.constant.WebConstant;
+import com.gihtub.liuanxin.constant.Const;
 import com.gihtub.liuanxin.util.JsonCode;
 import com.github.liuanxin.api.annotation.EnableApiInfo;
 import com.github.liuanxin.api.model.DocumentCopyright;
@@ -24,10 +24,10 @@ public class ApiInfoConfig {
     @Bean
     public DocumentCopyright apiCopyright() {
         return new DocumentCopyright()
-                .setTitle(WebConstant.PROJECT_TITLE)
-                .setTeam(WebConstant.PROJECT_CONTACT)
-                .setVersion(WebConstant.PROJECT_VERSION)
-                .setCopyright(WebConstant.PROJECT_COPYRIGHT)
+                .setTitle(Const.PROJECT_TITLE)
+                .setTeam(Const.PROJECT_CONTACT)
+                .setVersion(Const.PROJECT_VERSION)
+                .setCopyright(Const.PROJECT_COPYRIGHT)
                 .setIgnoreUrlSet(ignoreUrl())
                 .setGlobalResponse(globalResponse())
                 //.setCommentInReturnExample(false)
