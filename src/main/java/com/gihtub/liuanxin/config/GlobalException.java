@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * @see org.springframework.boot.autoconfigure.web.ErrorController
  * @see org.springframework.boot.autoconfigure.web.ErrorProperties
@@ -20,33 +17,8 @@ import java.util.regex.Pattern;
 @ControllerAdvice
 public class GlobalException {
 
-    private static final HttpStatus FAIL = HttpStatus.INTERNAL_SERVER_ERROR;
-
     @Value("${online:false}")
     private boolean online;
-
-    /*
-    @ExceptionHandler(ServiceException.class)
-    public ResponseEntity<JsonResult> service(ServiceException e) {
-        String msg = e.getMessage();
-        // debug log
-        return new ResponseEntity<>(JsonResult.fail(msg), FAIL);
-    }
-
-    @ExceptionHandler(NotLoginException.class)
-    public ResponseEntity<JsonResult> notLogin(NotLoginException e) {
-        String msg = e.getMessage();
-        // debug log
-        return new ResponseEntity<>(JsonResult.notLogin(msg), HttpStatus.UNAUTHORIZED);
-    }
-
-    @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<JsonResult> forbidden(ForbiddenException e) {
-        String msg = e.getMessage();
-        // debug log
-        return new ResponseEntity<>(JsonResult.notPermission(msg), HttpStatus.FORBIDDEN);
-    }
-    */
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<JsonResult> noHandler(NoHandlerFoundException e) {
@@ -73,6 +45,6 @@ public class GlobalException {
             msg = e.getMessage();
         }
         // error log
-        return new ResponseEntity<>(JsonResult.fail(msg), FAIL);
+        return new ResponseEntity<>(JsonResult.fail(msg), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
