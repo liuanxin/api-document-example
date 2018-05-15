@@ -1,7 +1,7 @@
 
 *** api-document-example
 
-文档收集项目
+文档收集示例
 
 *** Run
 
