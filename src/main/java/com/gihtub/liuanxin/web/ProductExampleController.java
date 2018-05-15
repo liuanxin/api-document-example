@@ -20,7 +20,7 @@ public class ProductExampleController {
 
     @ApiMethod(title = "商品列表", develop = Develop.PRODUCT_DEVELOP1)
     @GetMapping
-    public JsonResult<PageInfo<DemoVo>> demo(@ApiParam("商品名") String name, Page page) {
+    public JsonResult<PageInfo<DemoVo>> demo(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return JsonResult.success("test");
     }
 
