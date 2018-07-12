@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @ApiGroup(value = Develop.PRODUCT_DESC, index = 2)
 public class ProductExampleController {
 
-    @ApiMethod(title = "商品列表", develop = Develop.PRODUCT_DEVELOP1)
+    @ApiMethod(title = "商品列表", develop = Develop.PRODUCT)
     @GetMapping
     public JsonResult<PageInfo<DemoVo>> demo(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return JsonResult.success("test");
     }
 
-    @ApiMethod(title = "商品详情", develop = Develop.PRODUCT_DEVELOP2)
+    @ApiMethod(title = "商品详情", develop = Develop.PRODUCT)
     @GetMapping("/info")
     public JsonResult<DemoVo> demo2(@ApiParam("yy") Long id, DemoDto demoDto) {
         return JsonResult.success("test2");

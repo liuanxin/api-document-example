@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @ApiGroup(value = Develop.USER_DESC, index = 1)
 public class UserExampleController {
 
-    @ApiMethod(title = "用户列表", develop = Develop.USER_DEVELOP1, index = 1, desc = "管理员查询用户")
+    @ApiMethod(title = "用户列表", develop = Develop.USER, index = 1, desc = "管理员查询用户")
     @GetMapping
     public JsonResult<PageInfo<DemoVo>> demo1(DemoDto demoDto, Page page) {
         return JsonResult.success("test1");
     }
 
-    @ApiMethod(title = "用户信息", develop = Develop.USER_DEVELOP1, index = 2, commentInReturnExample = false)
+    @ApiMethod(title = "用户信息", develop = Develop.USER, index = 2, commentInReturnExample = false)
     @GetMapping("/info")
     public JsonResult<PageInfo<DemoVo>> demo2() {
         return JsonResult.success("test2");
     }
 
-    @ApiMethod(title = "用户详情", develop = Develop.USER_DEVELOP2, desc = "用户在页面头上点击自己的名字或头像时")
+    @ApiMethod(title = "用户详情", develop = Develop.USER, desc = "用户在页面头上点击自己的名字或头像时")
     @ApiResponses({
             @ApiResponse(code = 200, msg = "请求成功"),
             @ApiResponse(code = 500, msg = "请求异常")
@@ -36,7 +36,7 @@ public class UserExampleController {
         return JsonResult.success("test3");
     }
 
-    @ApiMethod(title = "用户操作", develop = Develop.USER_DEVELOP1)
+    @ApiMethod(title = "用户操作", develop = Develop.USER)
     @PostMapping("/operate")
     public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(value = "动作", paramType = ParamType.Header) String type) {
         return JsonResult.success("test4");
