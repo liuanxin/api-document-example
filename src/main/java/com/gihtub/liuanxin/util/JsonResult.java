@@ -52,7 +52,8 @@ public class JsonResult<T> {
 
     /** 参数错误 */
     public static <T> JsonResult<T> badRequest(String msg) {
-        return new JsonResult<T>(JsonCode.BAD_REQUEST, msg);
+        // return new JsonResult<T>(JsonCode.BAD_REQUEST, msg);
+        return new JsonResult<T>(JsonCode.FAIL, msg);
     }
 
     /** 未登录 */
@@ -62,7 +63,8 @@ public class JsonResult<T> {
 
     /** 无权限 */
     public static <T> JsonResult<T> notPermission(String msg) {
-        return new JsonResult<T>(JsonCode.NOT_PERMISSION, msg);
+        // return new JsonResult<T>(JsonCode.NOT_PERMISSION, msg);
+        return new JsonResult<T>(JsonCode.FAIL, msg);
     }
 
     /** 未找到 */
