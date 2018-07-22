@@ -26,13 +26,13 @@ public class UserExampleController {
         return JsonResult.success("test2");
     }
 
-    @ApiMethod(title = "用户详情", develop = Develop.USER, desc = "用户在页面头上点击自己的名字或头像时")
+    @ApiMethod(title = "user detail", develop = Develop.USER, desc = "When user click user avatar")
     @ApiResponses({
-            @ApiResponse(code = 200, msg = "请求成功"),
-            @ApiResponse(code = 500, msg = "请求异常")
+            @ApiResponse(code = 200, msg = "success, analytical data"),
+            @ApiResponse(code = 500, msg = "exception, show message")
     })
     @PostMapping("/{id}")
-    public JsonResult<DemoVo> demo3(@PathVariable("id") @ApiParam(value = "用户 id", example = "1") Long id) {
+    public JsonResult<DemoVo> demo3(@PathVariable("id") @ApiParam(value = "user id", example = "1") Long id) {
         return JsonResult.success("test3");
     }
 
