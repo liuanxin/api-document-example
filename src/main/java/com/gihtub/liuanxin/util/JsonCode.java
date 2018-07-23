@@ -19,7 +19,7 @@ public enum JsonCode {
     NOT_FOUND(404, "未找到相应处理(不需要处理)"),
 
     /** 显示 msg 给用户看 */
-    FAIL(500, "参数错误、无权限、失败等(输出 msg 即可)");
+    FAIL(500, "参数错误、无权限、内部错误、失败等(输出 msg 即可)");
 
     int flag;
     String msg;
