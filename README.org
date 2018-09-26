@@ -8,9 +8,9 @@
 运行 WebApplication 并访问 http:// 127.0.0.1:8080/api-info.html 即可.\\
 如果想要在文档中直接请求后台接口, 可以使用 http:// 127.0.0.1:8080/api-info-example.html 页面.
 
-[[###][https://raw.githubusercontent.com/liuanxin/image/master/api.png]]
+[[https://raw.githubusercontent.com/liuanxin/image/master/api.png]]
 -
-[[###][https://raw.githubusercontent.com/liuanxin/image/master/api2.png]]
+[[https://raw.githubusercontent.com/liuanxin/image/master/api2.png]]
 -
-[[###][https://raw.githubusercontent.com/liuanxin/image/master/api-example.gif]]
+[[https://raw.githubusercontent.com/liuanxin/image/master/api-example.gif]]
 -----
