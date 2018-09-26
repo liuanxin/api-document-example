@@ -1,7 +1,6 @@
 
 online: false
 
-# 默认也是这个
 server.port: 8080
 
 logging.config: classpath:log-dev.xml
