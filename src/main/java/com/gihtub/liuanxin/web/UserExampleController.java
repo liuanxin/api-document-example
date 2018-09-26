@@ -38,13 +38,13 @@ public class UserExampleController {
 
     @ApiMethod(title = "用户操作", develop = Develop.USER)
     @PostMapping("/operate")
-    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(value = "动作", paramType = ParamType.Header) String type) {
+    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(value = "动作(0 下, 1 上, 默认 0)") Boolean type) {
         return JsonResult.success("test4");
     }
 
     @ApiIgnore
     @GetMapping("/ignore-demo")
-    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam("xxx") String name, DemoDto demoDto) {
+    public JsonResult<PageInfo<DemoVo>> demo4(String name, DemoDto demoDto) {
         return JsonResult.success("test4");
     }
 }

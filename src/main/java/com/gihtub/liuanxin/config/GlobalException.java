@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
- * @see org.springframework.boot.autoconfigure.web.ErrorController
+ * @see org.springframework.boot.web.servlet.error.ErrorController
  * @see org.springframework.boot.autoconfigure.web.ErrorProperties
- * @see org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration
+ * @see org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
  */
 @ControllerAdvice
 public class GlobalException {
@@ -23,14 +23,14 @@ public class GlobalException {
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<JsonResult> noHandler(NoHandlerFoundException e) {
         // debug log
-        String msg = String.format("Not found(%s %s)", e.getHttpMethod(), e.getRequestURL());
+        String msg = String.format("未找到请求(%s %s)", e.getHttpMethod(), e.getRequestURL());
         return new ResponseEntity<>(JsonResult.notFound(msg), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<JsonResult> missParam(MissingServletRequestParameterException e) {
         // debug log
-        String msg = String.format("Missing required param(%s), type(%s)", e.getParameterName(), e.getParameterType());
+        String msg = String.format("缺少必要的参数(%s, 类型 %s)", e.getParameterName(), e.getParameterType());
         return new ResponseEntity<>(JsonResult.badRequest(msg), HttpStatus.BAD_REQUEST);
     }
 
@@ -38,9 +38,9 @@ public class GlobalException {
     public ResponseEntity<JsonResult> other(Throwable e) {
         String msg;
         if (online) {
-            msg = "Request Error, We will handle it as soon as possible";
+            msg = "请求错误, 我们会尽快处理";
         } else if (e instanceof NullPointerException) {
-            msg = "Null Point Exception, Contact the backend to view the log for processing";
+            msg = "空指针异常, 请联系后台技术查看日志进行处理";
         } else {
             msg = e.getMessage();
         }
