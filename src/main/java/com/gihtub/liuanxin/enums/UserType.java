@@ -3,39 +3,31 @@ package com.gihtub.liuanxin.enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Gender {
+public enum UserType {
 
-    Nil(0, "未知"), Male(0, "男"), Female(1, "女");
+    Normal(1), Vip(10);
 
     int code;
-    String value;
-    Gender(int code, String value) {
+    UserType(int code) {
         this.code = code;
-        this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
     @JsonValue
     public int getCode() {
         return code;
     }
     @JsonCreator
-    public static Gender deserializer(Object obj) {
+    public static UserType deserializer(Object obj) {
         if (obj == null) {
             return null;
         }
 
         String source = obj.toString().trim();
-        for (Gender em : values()) {
+        for (UserType em : values()) {
             if (source.equalsIgnoreCase(em.name())) {
                 return em;
             }
             if (source.equalsIgnoreCase(String.valueOf(em.code))) {
-                return em;
-            }
-            if (source.equalsIgnoreCase(em.value)) {
                 return em;
             }
         }

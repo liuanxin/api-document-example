@@ -2,6 +2,7 @@ package com.gihtub.liuanxin.web;
 
 import com.gihtub.liuanxin.constant.Develop;
 import com.gihtub.liuanxin.dto.DemoDto;
+import com.gihtub.liuanxin.enums.UserType;
 import com.gihtub.liuanxin.util.JsonResult;
 import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.util.PageInfo;
@@ -22,7 +23,7 @@ public class UserExampleController {
 
     @ApiMethod(title = "用户信息", develop = Develop.USER, index = 2, commentInReturnExample = false)
     @GetMapping("/info")
-    public JsonResult<PageInfo<DemoVo>> demo2() {
+    public JsonResult<PageInfo<DemoVo>> demo2(@ApiParam("用户类型") UserType type) {
         return JsonResult.success("test2");
     }
 
