@@ -6,7 +6,7 @@
 *** Run
 
 + 运行 WebApplication
-+ 访问 ~http://127.0.0.1:8080/api-info.html~, 在文档中请求后台接口: ~http://127.0.0.1:8080/api-info-example.html~
++ 访问 ~http://127.0.0.1:8080/api-info.html~, 请求后台接口: ~http://127.0.0.1:8080/api-info-example.html~
 
 最终效果如下
 [[###][https://raw.githubusercontent.com/liuanxin/image/master/api.png]]
