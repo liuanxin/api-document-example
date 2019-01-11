@@ -7,9 +7,7 @@ import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,8 +25,11 @@ public class ResponseExampleController {
             @ApiResponse(code = 200, msg = "正常返回数据")
     })
     @GetMapping("/demo-object")
-    public ResponseEntity<DemoVo> demoObject(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
-        if ("abc".equals(name)) {
+    public ResponseEntity<DemoVo> demoObject(@ApiParam(value = "商品名", textarea = true) @RequestParam("name") String abc,
+                                             @ApiParam(value = "头1", paramType = ParamType.Header) @RequestHeader Long id,
+                                             @ApiParam(value = "头2", paramType = ParamType.Header) @RequestHeader("some") String xyz,
+                                             Page page) {
+        if ("abc".equals(abc)) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
