@@ -24,7 +24,7 @@ public class ResponseExampleController {
             @ApiResponse(code = 404, msg = "当 name 传入 abc 时返回, 表示没有找到请求"),
             @ApiResponse(code = 200, msg = "正常返回数据")
     })
-    @GetMapping("/demo-object")
+    @PostMapping("/demo-object")
     public ResponseEntity<DemoVo> demoObject(@ApiParam(value = "商品名", textarea = true) @RequestParam("name") String abc,
                                              @ApiParam(value = "头1", paramType = ParamType.Header) @RequestHeader Long id,
                                              @ApiParam(value = "头2", paramType = ParamType.Header) @RequestHeader("some") String xyz,
@@ -80,7 +80,7 @@ public class ResponseExampleController {
     }
 
     @ApiMethod(title = "响应无法被解析2", develop = Develop.PRODUCT, index = 7)
-    @GetMapping("/demo-error2")
+    @PostMapping("/demo-error2")
     public ResponseEntity demoError2(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(null);
     }
