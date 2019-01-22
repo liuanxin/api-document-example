@@ -53,6 +53,7 @@ public class ProductExampleController {
     @ApiMethod(title = "商品关系(Map)", develop = Develop.PRODUCT, index = 2)
     @GetMapping("/map")
     public JsonResult<Map<String, DemoVo>> map(@ApiParam("yy") Long id, DemoDto demoDto) {
+        demoDto.basicCheck();
         Map<String, DemoVo> map = new HashMap<>();
         map.put("123", new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
         return JsonResult.success("map", map);

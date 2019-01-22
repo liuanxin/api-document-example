@@ -31,6 +31,7 @@ public class ResponseExampleController {
                                              Page page) {
         if ("abc".equals(abc)) {
             return ResponseEntity.notFound().build();
+            // return new ResponseEntity<>(new DemoVo(), HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.ok(new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
         }
