@@ -18,7 +18,7 @@ public class DemoDto {
 
     public void basicCheck() {
         if (userId == null || userId <= 0) {
-            throw new RuntimeException("用户 id 必须传入且要是数字");
+            throw new RuntimeException("用户 id 必须传入且要是数字且必须大于 0");
         }
     }
 }
