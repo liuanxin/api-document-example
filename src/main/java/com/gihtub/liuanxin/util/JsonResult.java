@@ -13,7 +13,7 @@ import lombok.Setter;
 public class JsonResult<T> {
 
     // 应该只有响应编码就可以了, 当前实体表示处理成功后的返回, 200 以外的响应编码统一处理
-    // @ApiReturn("返回码, 与响应编码相同")
+    // @ApiReturn("返回码")
     // private int code;
 
     @ApiReturn("返回说明. 如: 收货地址添加成功 等")
