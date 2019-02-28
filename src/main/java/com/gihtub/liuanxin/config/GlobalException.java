@@ -1,7 +1,8 @@
 package com.gihtub.liuanxin.config;
 
-import com.gihtub.liuanxin.util.JsonResult;
+import com.gihtub.liuanxin.util.JsonCode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,21 +20,25 @@ public class GlobalException {
     private boolean online;
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public JsonResult noHandler(NoHandlerFoundException e) {
+    public ResponseEntity<String> noHandler(NoHandlerFoundException e) {
         // debug log
         String msg = String.format("未找到请求(%s %s)", e.getHttpMethod(), e.getRequestURL());
-        return JsonResult.notFound(msg);
+        return ResponseEntity.status(JsonCode.NOT_FOUND.getFlag()).body(msg);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public JsonResult missParam(MissingServletRequestParameterException e) {
+    public ResponseEntity<String> missParam(MissingServletRequestParameterException e) {
         // debug log
         String msg = String.format("缺少必要的参数(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
-        return JsonResult.badRequest(msg);
+        return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
     }
 
+
+    // ... 其他的异常 ...
+
+
     @ExceptionHandler(Throwable.class)
-    public JsonResult other(Throwable e) {
+    public ResponseEntity<String> other(Throwable e) {
         String msg;
         if (online) {
             msg = "请求错误, 我们会尽快处理";
@@ -43,6 +48,6 @@ public class GlobalException {
             msg = e.getMessage();
         }
         // error log
-        return JsonResult.fail(msg);
+        return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(msg);
     }
 }
