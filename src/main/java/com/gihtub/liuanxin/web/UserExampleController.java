@@ -31,7 +31,7 @@ public class UserExampleController {
     @ApiMethod(title = "用户详情", develop = Develop.USER, desc = "当用户点击头像时")
     @ApiResponses({
             @ApiResponse(code = 200, msg = "成功, 解析数据"),
-            @ApiResponse(code = 500, msg = "异常, 输出 msg")
+            @ApiResponse(code = 500, msg = "异常, 输出 response body")
     })
     @PostMapping("/{id}")
     public JsonResult<DemoVo> demo3(@PathVariable("id") @ApiParam(value = "user id", example = "1") Long id) {
