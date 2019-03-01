@@ -40,7 +40,7 @@ public class UserExampleController {
 
     @ApiMethod(title = "用户操作", develop = Develop.USER)
     @PostMapping("/operate")
-    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(value = "动作(0 下, 1 上, 默认 0)") Boolean type) {
+    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam("动作(0 从上往下, 1 从下往上, 默认是 0)") Boolean type) {
         if (type != null && !type) {
             throw new ServiceException("return error");
         }
