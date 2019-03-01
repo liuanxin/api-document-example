@@ -1,6 +1,9 @@
 package com.gihtub.liuanxin.config;
 
+import com.gihtub.liuanxin.exception.ServiceException;
 import com.gihtub.liuanxin.util.JsonCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -19,26 +22,47 @@ import java.util.Arrays;
 @ControllerAdvice
 public class GlobalException {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalException.class);
+
     @Value("${online:false}")
     private boolean online;
 
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity<String> service(ServiceException e) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("业务异常", e);
+        }
+        return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(e.getMessage());
+    }
+
+    // 其他的自定义异常
+
+
+    // ... spring 的内部异常 ...
+
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<String> noHandler(NoHandlerFoundException e) {
-        // log
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("404", e);
+        }
         String msg = String.format("未找到请求(%s %s)", e.getHttpMethod(), e.getRequestURL());
         return ResponseEntity.status(JsonCode.NOT_FOUND.getFlag()).body(msg);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> missParam(MissingServletRequestParameterException e) {
-        // log
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("参数错误", e);
+        }
         String msg = String.format("缺少必要的参数(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
         return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<String> notSupported(HttpRequestMethodNotSupportedException e) {
-        // log
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("method 错误", e);
+        }
         String msg = "不支持此种请求方式";
         if (!online) {
             msg += String.format(". 当前(%s), 支持(%s)", e.getMethod(), Arrays.toString(e.getSupportedMethods()));
@@ -60,7 +84,9 @@ public class GlobalException {
         } else {
             msg = e.getMessage();
         }
-        // log
+        if (LOGGER.isErrorEnabled()) {
+            LOGGER.error("未知异常", e);
+        }
         return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(msg);
     }
 }

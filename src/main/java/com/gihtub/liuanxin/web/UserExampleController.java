@@ -3,6 +3,7 @@ package com.gihtub.liuanxin.web;
 import com.gihtub.liuanxin.constant.Develop;
 import com.gihtub.liuanxin.dto.DemoDto;
 import com.gihtub.liuanxin.enums.UserType;
+import com.gihtub.liuanxin.exception.ServiceException;
 import com.gihtub.liuanxin.util.JsonResult;
 import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.util.PageInfo;
@@ -40,6 +41,9 @@ public class UserExampleController {
     @ApiMethod(title = "用户操作", develop = Develop.USER)
     @PostMapping("/operate")
     public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam(value = "动作(0 下, 1 上, 默认 0)") Boolean type) {
+        if (type != null && !type) {
+            throw new ServiceException("return error");
+        }
         return JsonResult.success("test4");
     }
 
