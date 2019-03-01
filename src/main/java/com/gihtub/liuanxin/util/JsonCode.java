@@ -15,7 +15,7 @@ public enum JsonCode {
 
     FAIL(500, "内部错误、业务异常(输出 response body 即可)")
 
-    // , SERVICE_FAIL(1000, "业务异常")
+    // , SERVICE_FAIL(1000, "业务异常(输出 response body 即可)")
     ;
 
     int flag;
