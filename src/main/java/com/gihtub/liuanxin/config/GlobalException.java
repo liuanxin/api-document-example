@@ -29,10 +29,12 @@ public class GlobalException {
     private boolean online;
 
     @ExceptionHandler(ServiceException.class)
+    // public JsonResult service(ServiceException e) {
     public ResponseEntity<String> service(ServiceException e) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("业务异常", e);
         }
+        // return JsonResult.fail(e.getMessage());
         return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(e.getMessage());
     }
 
@@ -42,32 +44,46 @@ public class GlobalException {
     // ... spring 的内部异常 ...
 
     @ExceptionHandler(NoHandlerFoundException.class)
+    // public JsonResult noHandler(NoHandlerFoundException e) {
     public ResponseEntity<String> noHandler(NoHandlerFoundException e) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("404", e);
         }
-        String msg = String.format("未找到请求(%s %s)", e.getHttpMethod(), e.getRequestURL());
+        String msg = "未找到请求";
+        if (!online) {
+            msg += String.format("(%s %s)", e.getHttpMethod(), e.getRequestURL());
+        }
+        // return JsonResult.notFound();
         return ResponseEntity.status(JsonCode.NOT_FOUND.getFlag()).body(msg);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
+    // public JsonResult missParam(MissingServletRequestParameterException e) {
     public ResponseEntity<String> missParam(MissingServletRequestParameterException e) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("缺少参数", e);
         }
-        String msg = String.format("缺少必要的参数(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
+        String msg = "缺少必要的参数";
+        if (!online) {
+            msg += String.format("(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
+        }
+        // return JsonResult.badRequest(msg);
         return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
     }
 
     @ExceptionHandler(MissingRequestHeaderException.class)
+    // public JsonResult missHeader(MissingRequestHeaderException e) {
     public ResponseEntity<String> missHeader(MissingRequestHeaderException e) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("缺少头", e);
         }
-        return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(e.getMessage());
+        String msg = online ? "缺少参数信息" : e.getMessage();
+        // return JsonResult.badRequest(msg);
+        return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    // public JsonResult notSupported(HttpRequestMethodNotSupportedException e) {
     public ResponseEntity<String> notSupported(HttpRequestMethodNotSupportedException e) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("method 错误", e);
@@ -76,6 +92,7 @@ public class GlobalException {
         if (!online) {
             msg += String.format(". 当前(%s), 支持(%s)", e.getMethod(), Arrays.toString(e.getSupportedMethods()));
         }
+        // return JsonResult.fail(msg);
         return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(msg);
     }
 
@@ -84,6 +101,7 @@ public class GlobalException {
 
 
     @ExceptionHandler(Throwable.class)
+    // public JsonResult other(Throwable e) {
     public ResponseEntity<String> other(Throwable e) {
         String msg;
         if (online) {
@@ -96,6 +114,7 @@ public class GlobalException {
         if (LOGGER.isErrorEnabled()) {
             LOGGER.error("未知异常", e);
         }
+        // return JsonResult.fail(msg);
         return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(msg);
     }
 }

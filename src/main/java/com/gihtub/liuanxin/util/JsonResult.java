@@ -23,10 +23,12 @@ public class JsonResult<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
-    private JsonResult(String msg) {
+    private JsonResult(/*int code, */String msg) {
+        // this.code = code;
         this.msg = msg;
     }
-    private JsonResult(String msg, T data) {
+    private JsonResult(/*int code, */String msg, T data) {
+        // this.code = code;
         this.msg = msg;
         this.data = data;
     }
@@ -41,4 +43,28 @@ public class JsonResult<T> {
     public static <T> JsonResult<T> success(String msg, T data) {
         return new JsonResult<T>(msg, data);
     }
+
+    /*
+    public static <T> JsonResult<T> badRequest(String msg) {
+        return new JsonResult<T>(JsonCode.BAD_REQUEST.getFlag(), msg);
+    }
+    public static <T> JsonResult<T> notLogin(String msg) {
+        return new JsonResult<T>(JsonCode.NOT_LOGIN.getFlag(), msg);
+    }
+    public static <T> JsonResult<T> notPermission(String msg) {
+        return new JsonResult<T>(JsonCode.NOT_PERMISSION.getFlag(), msg);
+    }
+    public static <T> JsonResult<T> notFound() {
+        return new JsonResult<T>(JsonCode.NOT_FOUND.getFlag(), "404");
+    }
+    public static <T> JsonResult<T> fail(String msg) {
+        return new JsonResult<T>(JsonCode.FAIL.getFlag(), msg);
+    }
+    */
+
+    /*
+    public static <T> JsonResult<T> serviceFail(String msg) {
+        return new JsonResult<T>(JsonCode.SERVICE_FAIL.getFlag(), msg);
+    }
+    */
 }
