@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,10 +53,18 @@ public class GlobalException {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> missParam(MissingServletRequestParameterException e) {
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("参数错误", e);
+            LOGGER.debug("缺少参数", e);
         }
         String msg = String.format("缺少必要的参数(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
         return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
+    }
+
+    @ExceptionHandler(MissingRequestHeaderException.class)
+    public ResponseEntity<String> missHeader(MissingRequestHeaderException e) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("缺少头", e);
+        }
+        return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(e.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

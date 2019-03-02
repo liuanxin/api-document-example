@@ -3,6 +3,7 @@ package com.gihtub.liuanxin.web;
 import com.gihtub.liuanxin.constant.Develop;
 import com.gihtub.liuanxin.enums.Gender;
 import com.gihtub.liuanxin.enums.ProductType;
+import com.gihtub.liuanxin.exception.ServiceException;
 import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.*;
@@ -29,12 +30,11 @@ public class ResponseExampleController {
                                              @ApiParam(value = "头1", paramType = ParamType.Header) @RequestHeader Long id,
                                              @ApiParam(value = "头2", paramType = ParamType.Header) @RequestHeader("some") String xyz,
                                              Page page) {
+
         if ("abc".equals(abc)) {
-            return ResponseEntity.notFound().build();
-            // return new ResponseEntity<>(new DemoVo(), HttpStatus.NOT_FOUND);
-        } else {
-            return ResponseEntity.ok(new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
+            throw new ServiceException("商品名有误");
         }
+        return ResponseEntity.ok(new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
     }
 
     @ApiMethod(title = "响应 List", develop = Develop.PRODUCT, index = 4)
