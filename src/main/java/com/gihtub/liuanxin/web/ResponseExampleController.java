@@ -72,7 +72,7 @@ public class ResponseExampleController {
 
     @ApiMethod(title = "响应 List", develop = Develop.PRODUCT, index = 4)
     @ApiResponses({
-            @ApiResponse(code = 500, msg = "当 name 传入 xyz 时返回, 表示后台错误(展示歉意并说明后台将会尽快处理)"),
+            @ApiResponse(code = 500, msg = "当 name 传入 xyz 时返回, 后台错误"),
             @ApiResponse(code = 200, msg = "正常返回数据")
     })
     @GetMapping("/demo-list")
