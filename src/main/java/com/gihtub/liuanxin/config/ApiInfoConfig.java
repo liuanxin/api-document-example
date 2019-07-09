@@ -3,7 +3,9 @@ package com.gihtub.liuanxin.config;
 import com.gihtub.liuanxin.constant.Const;
 import com.gihtub.liuanxin.util.JsonCode;
 import com.github.liuanxin.api.annotation.EnableApiInfo;
+import com.github.liuanxin.api.annotation.ParamType;
 import com.github.liuanxin.api.model.DocumentCopyright;
+import com.github.liuanxin.api.model.DocumentParam;
 import com.github.liuanxin.api.model.DocumentResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +32,7 @@ public class ApiInfoConfig {
                 .setCopyright(Const.PROJECT_COPYRIGHT)
                 .setIgnoreUrlSet(ignoreUrl())
                 .setGlobalResponse(globalResponse())
+                .setGlobalToken(token())
                 .setOnline(online);
     }
 
@@ -45,5 +48,10 @@ public class ApiInfoConfig {
             responseList.add(new DocumentResponse(code.getFlag(), code.getMsg()));
         }
         return responseList;
+    }
+
+    private DocumentParam token() {
+        String name = "x-token", desc = "用户认证数据", example = "abc-123-xyz";
+        return DocumentParam.buildToken(name, desc, example, ParamType.Header)/*.setMust(true).setHasTextarea(true)*/;
     }
 }

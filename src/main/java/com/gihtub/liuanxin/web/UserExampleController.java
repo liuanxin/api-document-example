@@ -11,6 +11,7 @@ import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
+@ApiToken(false)
 @RestController
 @RequestMapping("/user")
 @ApiGroup(value = Develop.USER_DESC, index = 1)
