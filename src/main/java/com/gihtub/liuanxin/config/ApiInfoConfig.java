@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Configuration
 @EnableApiInfo
@@ -32,7 +29,7 @@ public class ApiInfoConfig {
                 .setCopyright(Const.PROJECT_COPYRIGHT)
                 .setIgnoreUrlSet(ignoreUrl())
                 .setGlobalResponse(globalResponse())
-                .setGlobalToken(token())
+                .setGlobalTokens(tokens())
                 .setOnline(online);
     }
 
@@ -50,8 +47,10 @@ public class ApiInfoConfig {
         return responseList;
     }
 
-    private DocumentParam token() {
-        String name = "x-token", desc = "用户认证数据", example = "abc-123-xyz";
-        return DocumentParam.buildToken(name, desc, example, ParamType.Header)/*.setMust(true).setHasTextarea(true)*/;
+    private List<DocumentParam> tokens() {
+        return Arrays.asList(
+                DocumentParam.buildToken("x-t", "用户认证数据", "abc-xyz", ParamType.Header).setHasTextarea(true),
+                DocumentParam.buildToken("x-v", "接口版本", "1.0.0", ParamType.Query).setMust(true)
+        );
     }
 }

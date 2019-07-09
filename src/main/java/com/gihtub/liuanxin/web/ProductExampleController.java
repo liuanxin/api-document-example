@@ -11,7 +11,7 @@ import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.ApiGroup;
 import com.github.liuanxin.api.annotation.ApiMethod;
 import com.github.liuanxin.api.annotation.ApiParam;
-import com.github.liuanxin.api.annotation.ApiToken;
+import com.github.liuanxin.api.annotation.ApiTokens;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +42,7 @@ public class ProductExampleController {
         return JsonResult.success("详情", new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
     }
 
-    @ApiToken(false)
+    @ApiTokens(false)
     @ApiMethod(title = "商品列表(List)", develop = Develop.PRODUCT, index = 1)
     @GetMapping("/list")
     public JsonResult<List<DemoVo>> list(@ApiParam("商品类型") ProductType productType) {
