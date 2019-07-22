@@ -35,7 +35,7 @@ public class GlobalException {
             LOGGER.debug("业务异常", e);
         }
         // return JsonResult.fail(e.getMessage());
-        return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(e.getMessage());
+        return ResponseEntity.status(JsonCode.FAIL.getCode()).body(e.getMessage());
     }
 
     // 其他的自定义异常
@@ -54,7 +54,8 @@ public class GlobalException {
             msg += String.format("(%s %s)", e.getHttpMethod(), e.getRequestURL());
         }
         // return JsonResult.notFound();
-        return ResponseEntity.status(JsonCode.NOT_FOUND.getFlag()).body(msg);
+        // return ResponseEntity.status(JsonCode.NOT_FOUND.getCode()).body(msg);
+        return ResponseEntity.status(JsonCode.FAIL.getCode()).body(msg);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
@@ -63,12 +64,13 @@ public class GlobalException {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("缺少参数", e);
         }
-        String msg = "缺少必要的参数";
+        String msg = "缺少参数";
         if (!online) {
-            msg += String.format("(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
+            msg += String.format(", 参数名(%s), 类型(%s)", e.getParameterName(), e.getParameterType());
         }
         // return JsonResult.badRequest(msg);
-        return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
+        // return ResponseEntity.status(JsonCode.BAD_REQUEST.getCode()).body(msg);
+        return ResponseEntity.status(JsonCode.FAIL.getCode()).body(msg);
     }
 
     @ExceptionHandler(MissingRequestHeaderException.class)
@@ -77,23 +79,27 @@ public class GlobalException {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("缺少头", e);
         }
-        String msg = online ? "缺少参数信息" : e.getMessage();
+        String msg = "缺少头";
+        if (!online) {
+            msg += String.format(", 头名(%s)", e.getHeaderName());
+        }
         // return JsonResult.badRequest(msg);
-        return ResponseEntity.status(JsonCode.BAD_REQUEST.getFlag()).body(msg);
+        // return ResponseEntity.status(JsonCode.BAD_REQUEST.getCode()).body(msg);
+        return ResponseEntity.status(JsonCode.FAIL.getCode()).body(msg);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     // public JsonResult notSupported(HttpRequestMethodNotSupportedException e) {
     public ResponseEntity<String> notSupported(HttpRequestMethodNotSupportedException e) {
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("method 错误", e);
+            LOGGER.debug("方法不支持", e);
         }
         String msg = "不支持此种请求方式";
         if (!online) {
             msg += String.format(". 当前(%s), 支持(%s)", e.getMethod(), Arrays.toString(e.getSupportedMethods()));
         }
         // return JsonResult.fail(msg);
-        return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(msg);
+        return ResponseEntity.status(JsonCode.FAIL.getCode()).body(msg);
     }
 
 
@@ -115,6 +121,6 @@ public class GlobalException {
             LOGGER.error("未知异常", e);
         }
         // return JsonResult.fail(msg);
-        return ResponseEntity.status(JsonCode.FAIL.getFlag()).body(msg);
+        return ResponseEntity.status(JsonCode.FAIL.getCode()).body(msg);
     }
 }

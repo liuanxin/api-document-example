@@ -42,7 +42,7 @@ public class ApiInfoConfig {
     private List<DocumentResponse> globalResponse() {
         List<DocumentResponse> responseList = new ArrayList<>();
         for (JsonCode code : JsonCode.values()) {
-            responseList.add(new DocumentResponse(code.getFlag(), code.getMsg()));
+            responseList.add(new DocumentResponse(code.getCode(), code.getValue()));
         }
         return responseList;
     }
