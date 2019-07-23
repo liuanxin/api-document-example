@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class JsonResult<T> {
 
-    @ApiReturn("返回码")
-    private JsonCode code;
+    // @ApiReturn("返回码")
+    // private JsonCode code;
 
     @ApiReturn("返回说明")
     private String msg;
