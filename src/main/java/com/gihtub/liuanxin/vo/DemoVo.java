@@ -1,5 +1,6 @@
 package com.gihtub.liuanxin.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gihtub.liuanxin.enums.Gender;
 import com.gihtub.liuanxin.enums.ProductType;
 import com.github.liuanxin.api.annotation.ApiReturn;
@@ -29,7 +30,8 @@ public class DemoVo {
     @ApiReturn(value = "商品类型", type = "int")
     private ProductType type;
 
-    @ApiReturn(value = "返回 Map")
+    @ApiReturn(value = "返回 Map, 空或长度为 0 则将不返回")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<Integer, DemoOtherVo> map;
 
 
