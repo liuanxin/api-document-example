@@ -49,8 +49,8 @@ public class ApiInfoConfig {
 
     private List<DocumentParam> tokens() {
         return Arrays.asList(
-                DocumentParam.buildToken("x-auth-token", "用户认证数据", "abc-xyz", ParamType.Header).setHasTextarea(true),
-                DocumentParam.buildToken("x-version", "接口版本", "1.0.0", ParamType.Query).setMust(true)
+                DocumentParam.buildToken("x-auth-token", "用户认证", "abc-xyz", true),
+                DocumentParam.buildToken("x-version", "接口版本", "1.0", false).setParamType(ParamType.Query.name())
         );
     }
 }
