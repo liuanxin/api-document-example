@@ -27,7 +27,7 @@ import java.util.Map;
 @ApiGroup(value = Develop.PRODUCT_DESC, index = 2)
 public class ProductExampleController {
 
-    @ApiMethod(title = "商品列表(分页)", develop = Develop.PRODUCT, index = -1)
+    @ApiMethod(value = "商品列表(分页)", develop = Develop.PRODUCT, index = -1)
     @GetMapping
     public JsonResult<PageInfo<DemoVo>> page(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return JsonResult.success("列表", new PageInfo<>(100, Arrays.asList(
@@ -36,14 +36,14 @@ public class ProductExampleController {
         )));
     }
 
-    @ApiMethod(title = "商品详情(实体)", develop = Develop.PRODUCT, index = 0)
+    @ApiMethod(value = "商品详情(实体)", develop = Develop.PRODUCT, index = 0)
     @GetMapping("/{id}")
     public JsonResult<DemoVo> id(@PathVariable("id") @ApiParam("商品 id") Long id) {
         return JsonResult.success("详情", new DemoVo(123L, "张三", Gender.Male, ProductType.Discount, null));
     }
 
     @ApiTokens(false)
-    @ApiMethod(title = "商品列表(List)", develop = Develop.PRODUCT, index = 1)
+    @ApiMethod(value = "商品列表(List)", develop = Develop.PRODUCT, index = 1)
     @GetMapping("/list")
     public JsonResult<List<DemoVo>> list(@ApiParam("商品类型") ProductType productType) {
         return JsonResult.success("列表", Arrays.asList(
@@ -52,7 +52,7 @@ public class ProductExampleController {
         ));
     }
 
-    @ApiMethod(title = "商品关系(Map)", develop = Develop.PRODUCT, index = 2)
+    @ApiMethod(value = "商品关系(Map)", develop = Develop.PRODUCT, index = 2)
     @GetMapping("/map")
     public JsonResult<Map<String, DemoVo>> map(@ApiParam("yy") Long id, DemoDto demoDto) {
         demoDto.basicCheck();
