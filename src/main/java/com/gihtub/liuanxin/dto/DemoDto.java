@@ -1,6 +1,7 @@
 package com.gihtub.liuanxin.dto;
 
 import com.gihtub.liuanxin.enums.Gender;
+import com.gihtub.liuanxin.enums.ProductType;
 import com.gihtub.liuanxin.exception.ServiceException;
 import com.github.liuanxin.api.annotation.ApiParam;
 import lombok.Getter;
@@ -16,6 +17,9 @@ public class DemoDto {
     // 文档收集 会将 enum 的 getCode: getValue 信息(没有则拼接 name)附加进说明
     @ApiParam(value = "性别", dataType = "int")
     private Gender gender;
+
+    @ApiParam("商品类别")
+    private ProductType[] types;
 
     public void basicCheck() {
         if (userId == null || userId <= 0) {
