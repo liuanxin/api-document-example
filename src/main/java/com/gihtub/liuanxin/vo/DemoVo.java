@@ -32,8 +32,10 @@ public class DemoVo {
     @ApiReturn(value = "性别", type = "int")
     private Gender gender;
 
-    @ApiReturn(value = "商品类型(非基础数据类型将无法生成 example 中的数据)", type = "int[]")
+    // 在 example 中输出的这个值是 null, 非基础数据类型数组也会导致输出 warn 信息, 使用 List<ProductType> 替换即可
+    @ApiReturn(value = "商品类型(非基础数据类型的数组无法实例化)", type = "int[]")
     private ProductType[] productTypes;
+    // private List<ProductType> productTypes;
 
     @ApiReturn("用户类型")
     private List<UserType> userTypes;
@@ -49,50 +51,6 @@ public class DemoVo {
     @ApiReturn(value = "一个 Map")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, List<DemoThreeVo>> threes;
-
-
-    public static DemoVo testData() {
-        return new DemoVo(
-                123L, "张三", Gender.Male,
-                new ProductType[] { ProductType.Normal, ProductType.Discount },
-                Arrays.asList(UserType.Normal, UserType.Vip),
-                Arrays.asList(new DemoOneVo(13579L, "一"), new DemoOneVo(24680L, "二")),
-                new HashMap<Integer, DemoTwoVo>() {{
-                    put(111, new DemoTwoVo(147L, new String[] { "四", "七" }));
-                    put(444, new DemoTwoVo(369L, new String[] { "六", "九" }));
-                }},
-                new HashMap<String, List<DemoThreeVo>>() {{
-                    put("name", Arrays.asList(
-                            new DemoThreeVo(159L, Arrays.asList("五", "九")),
-                            new DemoThreeVo(357L, Arrays.asList("三", "七"))
-                    ));
-                }}
-        );
-    }
-    public static List<DemoVo> testListData() {
-        return Arrays.asList(testData(), new DemoVo(
-                321L, "李四", Gender.Female,
-                new ProductType[] { ProductType.Discount },
-                Arrays.asList(UserType.Normal, UserType.Vip),
-                Arrays.asList(new DemoOneVo(97531L, "〇"), new DemoOneVo(86420L, "拾")),
-                new HashMap<Integer, DemoTwoVo>() {{
-                    put(222, new DemoTwoVo(741L, new String[] { "七", "四" }));
-                    put(333, new DemoTwoVo(963L, new String[] { "九", "六" }));
-                }},
-                new HashMap<String, List<DemoThreeVo>>() {{
-                    put("id", Arrays.asList(
-                            new DemoThreeVo(951L, Arrays.asList("九", "五")),
-                            new DemoThreeVo(753L, Arrays.asList("七", "三"))
-                    ));
-                }}
-        ));
-    }
-    public static PageInfo<DemoVo> testPageData() {
-        return new PageInfo<>(100, testListData());
-    }
-    public static Map<String, DemoVo> testMapData() {
-        return new HashMap<String, DemoVo>() {{ put("some", testData()); }};
-    }
 
 
     @Getter
@@ -127,5 +85,51 @@ public class DemoVo {
 
         @ApiReturn(value = "三列表", example = "一二三")
         private List<String> threeList;
+    }
+
+
+    public static DemoVo testData() {
+        return new DemoVo(
+                123L, "张三", Gender.Male,
+                new ProductType[] { ProductType.Normal, ProductType.Discount },
+                // Arrays.asList(ProductType.Normal, ProductType.Discount),
+                Arrays.asList(UserType.Normal, UserType.Vip),
+                Arrays.asList(new DemoOneVo(13579L, "一"), new DemoOneVo(24680L, "二")),
+                new HashMap<Integer, DemoTwoVo>() {{
+                    put(111, new DemoTwoVo(147L, new String[] { "四", "七" }));
+                    put(444, new DemoTwoVo(369L, new String[] { "六", "九" }));
+                }},
+                new HashMap<String, List<DemoThreeVo>>() {{
+                    put("name", Arrays.asList(
+                            new DemoThreeVo(159L, Arrays.asList("五", "九")),
+                            new DemoThreeVo(357L, Arrays.asList("三", "七"))
+                    ));
+                }}
+        );
+    }
+    public static List<DemoVo> testListData() {
+        return Arrays.asList(testData(), new DemoVo(
+                321L, "李四", Gender.Female,
+                new ProductType[] { ProductType.Discount },
+                // Arrays.asList(ProductType.Discount),
+                Arrays.asList(UserType.Normal, UserType.Vip),
+                Arrays.asList(new DemoOneVo(97531L, "〇"), new DemoOneVo(86420L, "拾")),
+                new HashMap<Integer, DemoTwoVo>() {{
+                    put(222, new DemoTwoVo(741L, new String[] { "七", "四" }));
+                    put(333, new DemoTwoVo(963L, new String[] { "九", "六" }));
+                }},
+                new HashMap<String, List<DemoThreeVo>>() {{
+                    put("id", Arrays.asList(
+                            new DemoThreeVo(951L, Arrays.asList("九", "五")),
+                            new DemoThreeVo(753L, Arrays.asList("七", "三"))
+                    ));
+                }}
+        ));
+    }
+    public static PageInfo<DemoVo> testPageData() {
+        return new PageInfo<>(100, testListData());
+    }
+    public static Map<String, DemoVo> testMapData() {
+        return new HashMap<String, DemoVo>() {{ put("some", testData()); }};
     }
 }
