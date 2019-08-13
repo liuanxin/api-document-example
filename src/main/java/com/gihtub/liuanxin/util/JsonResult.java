@@ -18,7 +18,7 @@ public class JsonResult<T> {
     @ApiReturn("返回说明")
     private String msg;
 
-    @ApiReturn("返回的数据. 实体 {\"id\":1} 还是列表 [{\"id\":1},{\"id\":2}] 依具体的业务而定")
+    @ApiReturn("返回数据. 实体 {\"id\":1} 还是数组 [{\"id\":1},{\"id\":2}] 依业务")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 

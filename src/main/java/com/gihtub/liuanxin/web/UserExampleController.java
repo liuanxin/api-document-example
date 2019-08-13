@@ -2,6 +2,7 @@ package com.gihtub.liuanxin.web;
 
 import com.gihtub.liuanxin.constant.Develop;
 import com.gihtub.liuanxin.dto.DemoDto;
+import com.gihtub.liuanxin.dto.RequestBodyDto;
 import com.gihtub.liuanxin.enums.UserType;
 import com.gihtub.liuanxin.exception.ServiceException;
 import com.gihtub.liuanxin.util.JsonResult;
@@ -10,6 +11,8 @@ import com.gihtub.liuanxin.util.PageInfo;
 import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.*;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @ApiTokens(false)
 @RestController
@@ -46,6 +49,12 @@ public class UserExampleController {
             throw new ServiceException("动作有误");
         }
         return JsonResult.success("test4");
+    }
+
+    @ApiMethod(value = "用户变更", develop = Develop.USER)
+    @PostMapping("/detail")
+    public JsonResult<List<DemoVo>> demo5(@RequestBody RequestBodyDto demoDto) {
+        return JsonResult.success("test5");
     }
 
     @ApiIgnore
