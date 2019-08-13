@@ -40,11 +40,11 @@ public class DemoVo {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<DemoOneVo> ones;
 
-    @ApiReturn("一个 Map 示例")
+    @ApiReturn("一个 Map 示例, key 是 int, 序列化时依然会输出成 \"0\" 字符串")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<Integer, DemoTwoVo> twos;
 
-    @ApiReturn("一个 Map")
+    @ApiReturn("一个 Map, key 是 String, 序列化时会输出成 \"?\"")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, List<DemoThreeVo>> threes;
 
@@ -65,7 +65,7 @@ public class DemoVo {
         @ApiReturn(value = "一 id", example = "111")
         private Long oneId;
 
-        @ApiReturn(value = "一字符", example = "abc")
+        @ApiReturn(value = "一字符", example = "<span style='color:red;'>富文本</span>")
         private String one;
     }
     @Getter
