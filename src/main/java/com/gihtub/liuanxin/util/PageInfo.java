@@ -14,9 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 public class PageInfo<T> {
 
-    @ApiReturn("总条数. 根据此值和 page limit 构建分页按钮")
+    @ApiReturn("SELECT COUNT(*) FROM ... 的结果")
     private int total;
 
-    @ApiReturn("当前页的数据")
+    @ApiReturn("SELECT ... FROM ... LIMIT 0, 15 的结果")
     private List<T> list;
 }

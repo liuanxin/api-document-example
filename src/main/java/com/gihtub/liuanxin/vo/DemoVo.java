@@ -1,5 +1,6 @@
 package com.gihtub.liuanxin.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gihtub.liuanxin.enums.Gender;
 import com.gihtub.liuanxin.enums.ProductType;
@@ -11,10 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
@@ -32,25 +30,31 @@ public class DemoVo {
     @ApiReturn(value = "性别", type = "int")
     private Gender gender;
 
-    // 在 example 中输出的这个值是 null, 非基础数据类型数组也会导致输出 warn 信息, 使用 List<ProductType> 替换即可
-    @ApiReturn(value = "商品类型(非基础数据类型的数组无法实例化)", type = "int[]")
+    @ApiReturn(value = "商品类型", example = "discount")
     private ProductType[] productTypes;
-    // private List<ProductType> productTypes;
 
-    @ApiReturn("用户类型")
+    @ApiReturn(value = "用户类型", example = "vip")
     private List<UserType> userTypes;
 
-    @ApiReturn(value = "一个 List 示例")
+    @ApiReturn("一个 List 示例")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<DemoOneVo> ones;
 
-    @ApiReturn(value = "一个 Map 示例")
+    @ApiReturn("一个 Map 示例")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<Integer, DemoTwoVo> twos;
 
-    @ApiReturn(value = "一个 Map")
+    @ApiReturn("一个 Map")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, List<DemoThreeVo>> threes;
+
+    @ApiReturn(value = "创建时间", example = "2018-01-01 12:13:14")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
+
+    @ApiReturn(value = "更新时间", example = "2019-01-01")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date updateTime;
 
 
     @Getter
@@ -83,7 +87,7 @@ public class DemoVo {
         @ApiReturn(value = "三 id", example = "222")
         private Long threeId;
 
-        @ApiReturn(value = "三列表", example = "一二三")
+        @ApiReturn(value = "三列表", example = "三二一")
         private List<String> threeList;
     }
 
@@ -92,7 +96,6 @@ public class DemoVo {
         return new DemoVo(
                 123L, "张三", Gender.Male,
                 new ProductType[] { ProductType.Normal, ProductType.Discount },
-                // Arrays.asList(ProductType.Normal, ProductType.Discount),
                 Arrays.asList(UserType.Normal, UserType.Vip),
                 Arrays.asList(new DemoOneVo(13579L, "一"), new DemoOneVo(24680L, "二")),
                 new HashMap<Integer, DemoTwoVo>() {{
@@ -104,14 +107,15 @@ public class DemoVo {
                             new DemoThreeVo(159L, Arrays.asList("五", "九")),
                             new DemoThreeVo(357L, Arrays.asList("三", "七"))
                     ));
-                }}
+                }},
+                new Date(),
+                new Date()
         );
     }
     public static List<DemoVo> testListData() {
         return Arrays.asList(testData(), new DemoVo(
                 321L, "李四", Gender.Female,
                 new ProductType[] { ProductType.Discount },
-                // Arrays.asList(ProductType.Discount),
                 Arrays.asList(UserType.Normal, UserType.Vip),
                 Arrays.asList(new DemoOneVo(97531L, "〇"), new DemoOneVo(86420L, "拾")),
                 new HashMap<Integer, DemoTwoVo>() {{
@@ -123,7 +127,9 @@ public class DemoVo {
                             new DemoThreeVo(951L, Arrays.asList("九", "五")),
                             new DemoThreeVo(753L, Arrays.asList("七", "三"))
                     ));
-                }}
+                }},
+                new Date(),
+                new Date()
         ));
     }
     public static PageInfo<DemoVo> testPageData() {
