@@ -8,9 +8,9 @@ import lombok.Setter;
 @Setter
 public class Page {
 
-    @ApiParam("当前页数. 不传或传入 0, 或负数, 或非数字则默认是 1")
+    @ApiParam("当前页数")
     private Integer page;
 
-    @ApiParam("每页条数. 不传或传入 0, 或负数, 或非数字, 或大于 1000 则默认是 15")
+    @ApiParam("每页条数")
     private Integer limit;
 }
