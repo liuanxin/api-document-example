@@ -1,6 +1,7 @@
 package com.gihtub.liuanxin.web;
 
 import com.gihtub.liuanxin.constant.Develop;
+import com.gihtub.liuanxin.enums.Gender;
 import com.gihtub.liuanxin.exception.ServiceException;
 import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.vo.DemoVo;
@@ -34,6 +35,7 @@ public class ResponseExampleController {
     public ResponseEntity<DemoVo> demoObject(@ApiParam(value = "商品名", textarea = true) @RequestParam("name") String abc,
                                              @ApiParam(value = "头1", paramType = ParamType.Header) @RequestHeader Long id,
                                              @ApiParam(value = "头2", paramType = ParamType.Header) @RequestHeader("some") String xyz,
+                                             @ApiParam(value = "性别", example = "2") Gender gender,
                                              @ApiParam("文件上传1") MultipartFile file1,
                                              @ApiParam(value = "文件上传2", must = true) MultipartFile file2,
                                              Page page) {
