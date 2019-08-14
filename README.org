@@ -9,9 +9,17 @@
 + 访问 ~http://127.0.0.1:8080/api-info.html~, 请求后台接口: ~http://127.0.0.1:8080/api-info-example.html~
 
 最终效果如下
-[[###][https://raw.githubusercontent.com/liuanxin/image/master/api.png]]
+
+[[https://raw.githubusercontent.com/liuanxin/image/master/api.png]]
+字段说明不显示在返回示例中, 单独罗列
+[[https://raw.githubusercontent.com/liuanxin/image/master/api2.png]]
 -
-[[###][https://raw.githubusercontent.com/liuanxin/image/master/api2.png]]
--
-[[###][https://raw.githubusercontent.com/liuanxin/image/master/api-example.gif]]
+[[https://raw.githubusercontent.com/liuanxin/image/master/api.gif]]
+
 -----
+
+向后端请求的示例效果如下
+
+[[https://raw.githubusercontent.com/liuanxin/image/master/api-example.png]]
+-
+[[https://raw.githubusercontent.com/liuanxin/image/master/api-example2.png]]
