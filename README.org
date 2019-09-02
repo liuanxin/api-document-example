@@ -23,3 +23,5 @@
 [[https://raw.githubusercontent.com/liuanxin/image/master/api-example.png]]
 -
 [[https://raw.githubusercontent.com/liuanxin/image/master/api-example2.png]]
+-
+[[https://raw.githubusercontent.com/liuanxin/image/master/api-example.gif]]
