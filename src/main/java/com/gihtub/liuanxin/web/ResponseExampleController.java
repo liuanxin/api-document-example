@@ -125,7 +125,7 @@ public class ResponseExampleController {
 
     // 下面的返回结果无法被解析
 
-    @ApiMethod(value = "响应无法被解析", develop = Develop.PRODUCT, index = 7)
+    @ApiMethod(value = "响应无法被解析", develop = Develop.PRODUCT, index = 8)
     @GetMapping("/demo-error3")
     public ResponseEntity<Object> demoError3(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(new HashMap<>());
