@@ -1,7 +1,9 @@
 package com.gihtub.liuanxin.config;
 
 import com.gihtub.liuanxin.constant.Const;
-import com.gihtub.liuanxin.util.JsonCode;
+import com.gihtub.liuanxin.util.JsonResult;
+import com.gihtub.liuanxin.util.PageInfo;
+import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.EnableApiInfo;
 import com.github.liuanxin.api.annotation.ParamType;
 import com.github.liuanxin.api.model.DocumentCopyright;
@@ -40,10 +42,21 @@ public class ApiInfoConfig {
     }
 
     private List<DocumentResponse> globalResponse() {
+        /*
         List<DocumentResponse> responseList = new ArrayList<>();
         for (JsonCode code : JsonCode.values()) {
             responseList.add(new DocumentResponse(code.getCode(), code.getValue()));
         }
+        */
+        List<DocumentResponse> responseList = new ArrayList<>();
+        responseList.add(new DocumentResponse(200, "正常"));
+        responseList.add(new DocumentResponse(400, "请求有问题").setResponse(DemoVo.class));
+        responseList.add(new DocumentResponse(500, "请求有误").setResponse(
+                JsonResult.class, PageInfo.class, new Class[] { DemoVo.class }
+        ));
+        responseList.add(new DocumentResponse(503, "请求不正确").setResponse(
+                JsonResult.class, List.class, new Class[] { Map.class }, new Class[] { String.class, DemoVo.class }
+        ));
         return responseList;
     }
 

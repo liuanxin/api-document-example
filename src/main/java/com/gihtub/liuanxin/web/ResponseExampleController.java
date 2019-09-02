@@ -3,7 +3,9 @@ package com.gihtub.liuanxin.web;
 import com.gihtub.liuanxin.constant.Develop;
 import com.gihtub.liuanxin.enums.Gender;
 import com.gihtub.liuanxin.exception.ServiceException;
+import com.gihtub.liuanxin.util.JsonResult;
 import com.gihtub.liuanxin.util.Page;
+import com.gihtub.liuanxin.util.PageInfo;
 import com.gihtub.liuanxin.vo.DemoVo;
 import com.github.liuanxin.api.annotation.*;
 import org.slf4j.Logger;
@@ -105,19 +107,24 @@ public class ResponseExampleController {
 
     // 下面的返回结果无法被解析
 
-    @ApiMethod(value = "响应无法被解析1", develop = Develop.PRODUCT, index = 6)
+    @ApiMethod(value = "自定义返回类型 1", develop = Develop.PRODUCT, index = 6,
+            commentInReturnExampleWithLevel = false, returnType = {
+            @ApiReturnType(value = JsonResult.class, genericParent = Map.class, generic = {String.class, DemoVo.class })
+    })
     @GetMapping("/demo-error")
     public Object demoError(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return new HashMap<>();
     }
 
-    @ApiMethod(value = "响应无法被解析2", develop = Develop.PRODUCT, index = 7)
+    @ApiMethod(value = "自定义返回类型 2", develop = Develop.PRODUCT, index = 7, returnType = {
+            @ApiReturnType(value = JsonResult.class, genericParent = PageInfo.class, generic = List.class, genericChild = DemoVo.class)
+    })
     @PostMapping("/demo-error2")
     public ResponseEntity demoError2(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(null);
     }
 
-    @ApiMethod(value = "响应无法被解析3", develop = Develop.PRODUCT, index = 7)
+    @ApiMethod(value = "响应无法被解析", develop = Develop.PRODUCT, index = 7)
     @GetMapping("/demo-error3")
     public ResponseEntity<Object> demoError3(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(new HashMap<>());
