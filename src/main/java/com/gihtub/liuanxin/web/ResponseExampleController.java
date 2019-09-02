@@ -110,7 +110,7 @@ public class ResponseExampleController {
             @ApiReturnType(value = JsonResult.class, genericParent = Map.class, generic = {String.class, DemoVo.class })
     })
     @GetMapping("/demo-error")
-    public Object demoError(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+    public Object demoError(@ApiParam(value = "名", textarea = true) String name, Page page) {
         return new HashMap<>();
     }
 
@@ -118,7 +118,7 @@ public class ResponseExampleController {
             @ApiReturnType(value = JsonResult.class, genericParent = PageInfo.class, generic = List.class, genericChild = DemoVo.class)
     })
     @PostMapping("/demo-error2")
-    public ResponseEntity demoError2(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+    public ResponseEntity demoError2(@ApiParam(value = "品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(null);
     }
 
