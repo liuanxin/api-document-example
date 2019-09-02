@@ -110,8 +110,8 @@ public class ResponseExampleController {
             @ApiReturnType(value = JsonResult.class, genericParent = Map.class, generic = {String.class, DemoVo.class })
     })
     @GetMapping("/demo-error")
-    public Object demoError(@ApiParam(value = "名", textarea = true) String name, Page page) {
-        return new HashMap<>();
+    public JsonResult demoError(@ApiParam(value = "名", textarea = true) String name, Page page) {
+        return null;
     }
 
     @ApiMethod(value = "自定义返回类型 2", develop = Develop.PRODUCT, index = 7, returnType = {
