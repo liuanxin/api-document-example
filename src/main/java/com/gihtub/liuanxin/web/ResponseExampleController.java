@@ -106,11 +106,7 @@ public class ResponseExampleController {
         }
     }
 
-
-    // 下面的返回结果无法被解析
-
-    @ApiMethod(value = "自定义返回类型 1", develop = Develop.PRODUCT, index = 6,
-            commentInReturnExampleWithLevel = false, returnType = {
+    @ApiMethod(value = "自定义返回类型 1", develop = Develop.PRODUCT, index = 6, returnType = {
             @ApiReturnType(value = JsonResult.class, genericParent = Map.class, generic = {String.class, DemoVo.class })
     })
     @GetMapping("/demo-error")
@@ -125,6 +121,9 @@ public class ResponseExampleController {
     public ResponseEntity demoError2(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(null);
     }
+
+
+    // 下面的返回结果无法被解析
 
     @ApiMethod(value = "响应无法被解析", develop = Develop.PRODUCT, index = 7)
     @GetMapping("/demo-error3")
