@@ -77,8 +77,10 @@ public class ResponseExampleController {
 
     @ApiMethod(value = "响应 List", develop = Develop.PRODUCT, index = 4)
     @ApiResponses({
-            @ApiResponse(code = 500, msg = "当 name 传入 xyz 时返回, 后台错误"),
-            @ApiResponse(code = 200, msg = "正常返回数据")
+            @ApiResponse(code = 200, msg = "成功"),
+            @ApiResponse(code = 500, msg = "xxx 错误", type = {
+                    @ApiReturnType(value = JsonResult.class, genericParent = PageInfo.class, generic = DemoVo.class)
+            })
     })
     @GetMapping("/demo-list")
     public ResponseEntity<List<DemoVo>> demoList(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
