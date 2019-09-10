@@ -7,6 +7,8 @@ import com.gihtub.liuanxin.util.JsonResult;
 import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.util.PageInfo;
 import com.gihtub.liuanxin.vo.DemoVo;
+import com.gihtub.liuanxin.vo.R1Vo;
+import com.gihtub.liuanxin.vo.R2Vo;
 import com.github.liuanxin.api.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,6 +122,18 @@ public class ResponseExampleController {
     @PostMapping("/demo-error2")
     public ResponseEntity demoError2(@ApiParam(value = "品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(null);
+    }
+
+    @ApiMethod(value = "recursive 1", develop = Develop.PRODUCT, index = -1)
+    @GetMapping("/demo-recursive1")
+    public ResponseEntity<R1Vo> recursive1(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+        return ResponseEntity.ok(R1Vo.testData());
+    }
+
+    @ApiMethod(value = "recursive 2", develop = Develop.PRODUCT, index = 0)
+    @GetMapping("/demo-recursive2")
+    public ResponseEntity<R2Vo> recursive2(@ApiParam(value = "商品名", textarea = true) String name) {
+        return ResponseEntity.ok(R2Vo.testData());
     }
 
 
