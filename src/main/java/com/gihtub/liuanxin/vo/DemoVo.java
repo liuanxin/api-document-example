@@ -27,7 +27,7 @@ public class DemoVo {
     private String name;
 
     // 文档收集 会将 enum 的 getCode: getValue 信息(没有则拼接 name)附加进说明
-    @ApiReturn(value = "性别", type = "int")
+    @ApiReturn(value = "性别", example = "1")
     private Gender gender;
 
     @ApiReturn(value = "商品类型", example = "discount")
