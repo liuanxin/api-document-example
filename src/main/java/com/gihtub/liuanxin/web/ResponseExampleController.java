@@ -7,8 +7,9 @@ import com.gihtub.liuanxin.util.JsonResult;
 import com.gihtub.liuanxin.util.Page;
 import com.gihtub.liuanxin.util.PageInfo;
 import com.gihtub.liuanxin.vo.DemoVo;
+import com.gihtub.liuanxin.vo.R0Vo;
 import com.gihtub.liuanxin.vo.R1Vo;
-import com.gihtub.liuanxin.vo.R2Vo;
+import com.gihtub.liuanxin.vo.RsVo;
 import com.github.liuanxin.api.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,10 +31,10 @@ public class ResponseExampleController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResponseExampleController.class);
 
-    @ApiMethod(value = "响应实体", develop = Develop.PRODUCT, index = 3)
+    @ApiMethod(value = "响应实体", develop = Develop.PRODUCT, index = 1)
     @ApiResponses({
-            @ApiResponse(code = 404, msg = "当 name 传入 abc 时返回, 表示没有找到请求"),
-            @ApiResponse(code = 200, msg = "正常返回数据")
+            @ApiResponse(code = 200, msg = "正常返回数据"),
+            @ApiResponse(code = 404, msg = "当 name 传入 abc 时返回, 表示没有找到请求")
     })
     @PostMapping("/demo-object")
     public ResponseEntity<DemoVo> demoObject(@ApiParam(value = "商品名", textarea = true) @RequestParam("name") String abc,
@@ -77,7 +78,7 @@ public class ResponseExampleController {
         return ResponseEntity.ok(DemoVo.testData());
     }
 
-    @ApiMethod(value = "响应 List", develop = Develop.PRODUCT, index = 4)
+    @ApiMethod(value = "响应 List", develop = Develop.PRODUCT, index = 2)
     @ApiResponses({
             @ApiResponse(code = 200, msg = "成功"),
             @ApiResponse(code = 500, msg = "xxx 错误", type = {
@@ -93,10 +94,10 @@ public class ResponseExampleController {
         }
     }
 
-    @ApiMethod(value = "响应 Map", develop = Develop.PRODUCT, index = 5)
+    @ApiMethod(value = "响应 Map", develop = Develop.PRODUCT, index = 3)
     @ApiResponses({
-            @ApiResponse(code = 403, msg = "当 name 传入 xyz 时返回, 表示没有权限(导去登录页面)"),
-            @ApiResponse(code = 200, msg = "正常返回数据")
+            @ApiResponse(code = 200, msg = "正常返回数据"),
+            @ApiResponse(code = 403, msg = "当 name 传入 xyz 时返回, 表示没有权限(导去登录页面)")
     })
     @GetMapping("/demo-map")
     public ResponseEntity<Map<String, DemoVo>> demoMap(@ApiParam(value = "商品名", textarea = true) String name,
@@ -108,40 +109,52 @@ public class ResponseExampleController {
         }
     }
 
-    @ApiMethod(value = "自定义返回类型 1", develop = Develop.PRODUCT, index = 6, returnType = {
+
+    @ApiMethod(value = "自定义返回类型 1", develop = Develop.PRODUCT, index = 4, returnType = {
             @ApiReturnType(value = JsonResult.class, genericParent = Map.class, generic = {String.class, DemoVo.class })
     })
-    @GetMapping("/demo-error")
-    public JsonResult demoError(@ApiParam(value = "名", textarea = true) String name, Page page) {
-        return null;
+    @GetMapping("/demo-custom1")
+    public Object customReturn1(@ApiParam(value = "名", textarea = true) String name, Page page) {
+        return new HashMap<>();
     }
 
-    @ApiMethod(value = "自定义返回类型 2", develop = Develop.PRODUCT, index = 7, returnType = {
+    @ApiMethod(value = "自定义返回类型 2", develop = Develop.PRODUCT, index = 5, returnType = {
             @ApiReturnType(value = JsonResult.class, genericParent = PageInfo.class, generic = List.class, genericChild = DemoVo.class)
     })
-    @PostMapping("/demo-error2")
-    public ResponseEntity demoError2(@ApiParam(value = "品名", textarea = true) String name, Page page) {
+    @PostMapping("/demo-custom2")
+    public ResponseEntity customReturn2(@ApiParam(value = "品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(null);
     }
 
-    @ApiMethod(value = "recursive 1", develop = Develop.PRODUCT, index = -1)
-    @GetMapping("/demo-recursive1")
-    public ResponseEntity<R1Vo> recursive1(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
-        return ResponseEntity.ok(R1Vo.testData());
-    }
 
-    @ApiMethod(value = "recursive 2", develop = Develop.PRODUCT, index = 0)
+    @ApiMethod(value = "递归示例 1", develop = Develop.PRODUCT, index = 6)
+    @GetMapping("/demo-recursive1")
+    public ResponseEntity<RsVo> recursive1() {
+        return ResponseEntity.ok(RsVo.testData());
+    }
+    @ApiMethod(value = "递归示例 2", develop = Develop.PRODUCT, index = 7)
     @GetMapping("/demo-recursive2")
-    public ResponseEntity<R2Vo> recursive2(@ApiParam(value = "商品名", textarea = true) String name) {
-        return ResponseEntity.ok(R2Vo.testData());
+    public ResponseEntity<R0Vo> recursive2(@ApiParam(value = "商品名", textarea = true) String name) {
+        return ResponseEntity.ok(R0Vo.testData());
+    }
+    @ApiMethod(value = "递归示例 3", develop = Develop.PRODUCT, index = 8)
+    @GetMapping("/demo-recursive3")
+    public ResponseEntity<R1Vo> recursive3(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+        return ResponseEntity.ok(R1Vo.testData());
     }
 
 
     // 下面的返回结果无法被解析
 
-    @ApiMethod(value = "响应无法被解析", develop = Develop.PRODUCT, index = 8)
-    @GetMapping("/demo-error3")
-    public ResponseEntity<Object> demoError3(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+    @ApiMethod(value = "响应无法被解析 1", develop = Develop.PRODUCT)
+    @GetMapping("/demo-error1")
+    public ResponseEntity demoError1(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+        return ResponseEntity.ok(new Object());
+    }
+
+    @ApiMethod(value = "响应无法被解析 2", develop = Develop.PRODUCT)
+    @GetMapping("/demo-error2")
+    public ResponseEntity<Object> demoError2(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
         return ResponseEntity.ok(new HashMap<>());
     }
 }

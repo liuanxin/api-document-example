@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
@@ -20,18 +18,18 @@ public class R1Vo {
 
     private int id;
     private String name;
-    private RIVo r2;
+    private R2Vo r2;
 
     @Getter
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
     @Accessors(chain = true)
-    public static class RIVo {
+    public static class R2Vo {
 
         private Gender gender;
         private String some;
-        private Map<String, RIIVo> r3;
+        private Map<String, R3Vo> r3;
     }
 
     @Getter
@@ -39,7 +37,7 @@ public class R1Vo {
     @NoArgsConstructor
     @AllArgsConstructor
     @Accessors(chain = true)
-    public static class RIIVo {
+    public static class R3Vo {
 
         private Date time;
         private Long rid;
@@ -48,6 +46,8 @@ public class R1Vo {
 
 
     public static R1Vo testData() {
-        return null;
+        Map<String, R3Vo> r3Map = new HashMap<>();
+        r3Map.put("ccc", new R3Vo(new Date(), 321123L, Collections.singletonList(new R1Vo().setId(222).setName("ddd"))));
+        return new R1Vo(111, "aaa", new R2Vo(Gender.Female, "bbb", r3Map));
     }
 }

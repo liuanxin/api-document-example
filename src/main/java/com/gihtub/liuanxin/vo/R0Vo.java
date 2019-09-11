@@ -11,24 +11,24 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class R2Vo {
+public class R0Vo {
 
     private int id;
-    private RIIIVo r2;
+    private R10Vo r10;
 
     @Getter
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
     @Accessors(chain = true)
-    public static class RIIIVo {
+    public static class R10Vo {
 
         private int id;
-        private R2Vo r2;
+        private R0Vo r0;
     }
 
 
-    public static R2Vo testData() {
-        return new R2Vo(111, new RIIIVo(333, null));
+    public static R0Vo testData() {
+        return new R0Vo(111, new R10Vo(333, null));
     }
 }
