@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@ApiTokens(false)
+@ApiTokens
 @RestController
 @RequestMapping("/user")
 @ApiGroup(value = Develop.USER_DESC, index = 1)
