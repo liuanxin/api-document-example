@@ -27,7 +27,7 @@ public class DemoVo {
     private String name;
 
     // 文档收集 会将 enum 的 getCode: getValue 信息(没有则拼接 name)附加进说明
-    @ApiReturn(value = "性别", example = "1")
+    @ApiReturn(value = "性别")
     private Gender gender;
 
     @ApiReturn(value = "商品类型", example = "discount")
@@ -40,7 +40,7 @@ public class DemoVo {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<DemoOneVo> ones;
 
-    @ApiReturn("一个 Map 示例, key 是 int, 序列化时依然会输出成 \"0\" 字符串")
+    @ApiReturn("一个 Map 示例, key 是 int, bala bala bala bala bala 序列化时依然会输出成 \"0\" 字符串")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<Integer, DemoTwoVo> twos;
 
