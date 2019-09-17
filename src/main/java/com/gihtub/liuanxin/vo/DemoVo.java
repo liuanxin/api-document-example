@@ -40,7 +40,7 @@ public class DemoVo {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<DemoOneVo> ones;
 
-    @ApiReturn("一个 Map 示例, key 是 int, bala bala bala bala bala 序列化时依然会输出成 \"0\" 字符串")
+    @ApiReturn("一个 Map 示例, key 是 int, 序列化时依然会输出成 \"0\" 字符串")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<Integer, DemoTwoVo> twos;
 

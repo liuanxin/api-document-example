@@ -23,8 +23,8 @@ public class DemoDto {
     @ApiParam("商品类别")
     private ProductType[] types;
 
-    @ApiParam(datePattern = "YYYY-MM-DD HH:mm:ss", must = true)
-    private Date date;
+    @ApiParam(value = "创建时间", datePattern = "YYYY-MM-DD HH:mm:ss", must = true)
+    private Date createTime;
 
     public void basicCheck() {
         if (userId == null || userId <= 0) {
