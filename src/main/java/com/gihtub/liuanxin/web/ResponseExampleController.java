@@ -145,7 +145,7 @@ public class ResponseExampleController {
 
     @ApiMethod(value = "响应无法被解析 1", develop = Develop.PRODUCT)
     @GetMapping("/demo-error1")
-    public ResponseEntity demoError1(@ApiParam(value = "时间") Date createTime, Page page) {
+    public ResponseEntity demoError1(@ApiParam(value = "创建时间", datePattern = "YYYY-MM-DD") Date create, Page page) {
         return ResponseEntity.ok("ok");
     }
 
