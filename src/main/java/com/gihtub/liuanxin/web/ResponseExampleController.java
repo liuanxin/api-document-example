@@ -19,10 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/response")
@@ -148,13 +145,15 @@ public class ResponseExampleController {
 
     @ApiMethod(value = "响应无法被解析 1", develop = Develop.PRODUCT)
     @GetMapping("/demo-error1")
-    public ResponseEntity demoError1(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
-        return ResponseEntity.ok(new Object());
+    public ResponseEntity demoError1(@ApiParam(value = "时间") Date createTime, Page page) {
+        return ResponseEntity.ok("ok");
     }
 
     @ApiMethod(value = "响应无法被解析 2", develop = Develop.PRODUCT)
     @GetMapping("/demo-error2")
-    public ResponseEntity<Object> demoError2(@ApiParam(value = "商品名", textarea = true) String name, Page page) {
+    public ResponseEntity<Object> demoError2(
+            @ApiParam(value = "日期", dataType = "date", datePattern = "HH:mm:ss") String time,
+            Page page) {
         return ResponseEntity.ok(new HashMap<>());
     }
 }
