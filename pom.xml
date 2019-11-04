@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gihtub.liuanxin</groupId>
+    <groupId>com.github.liuanxin</groupId>
     <artifactId>api-document-example</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -20,6 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <api-document.version>0.5.8</api-document.version>
+        <docker-repository>106.12.99.55:8082</docker-repository>
     </properties>
 
     <dependencies>
@@ -45,6 +46,24 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.7.0</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:8-jre-alpine</image>
+                    </from>
+                    <to>
+                        <image>${docker-repository}/${project.groupId}/${project.artifactId}</image>
+                        <!--<tags>
+                            <tag>latest</tag>
+                        </tags>-->
+                    </to>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                </configuration>
             </plugin>
         </plugins>
     </build>
