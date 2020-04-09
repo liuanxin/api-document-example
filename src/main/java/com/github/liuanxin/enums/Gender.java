@@ -23,20 +23,18 @@ public enum Gender {
     }
     @JsonCreator
     public static Gender deserializer(Object obj) {
-        if (obj == null) {
-            return null;
-        }
-
-        String source = obj.toString().trim();
-        for (Gender em : values()) {
-            if (source.equalsIgnoreCase(em.name())) {
-                return em;
-            }
-            if (source.equalsIgnoreCase(String.valueOf(em.code))) {
-                return em;
-            }
-            if (source.equalsIgnoreCase(em.value)) {
-                return em;
+        if (obj != null) {
+            String source = obj.toString().trim();
+            for (Gender em : values()) {
+                if (source.equalsIgnoreCase(em.name())) {
+                    return em;
+                }
+                if (source.equalsIgnoreCase(String.valueOf(em.code))) {
+                    return em;
+                }
+                if (source.equalsIgnoreCase(em.value)) {
+                    return em;
+                }
             }
         }
         return null;
