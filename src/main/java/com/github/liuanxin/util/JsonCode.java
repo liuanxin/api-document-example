@@ -46,7 +46,7 @@ public enum JsonCode {
     @JsonCreator
     public static JsonCode deserializer(Object obj) {
         if (obj != null) {
-            String des = obj.toString();
+            String des = obj.toString().trim();
             for (JsonCode jsonCode : values()) {
                 if (des.equals(String.valueOf(jsonCode.code))) {
                     return jsonCode;
