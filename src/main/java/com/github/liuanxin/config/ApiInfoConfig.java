@@ -48,7 +48,7 @@ public class ApiInfoConfig {
         }
         */
         List<DocumentResponse> responseList = new ArrayList<>();
-        responseList.add(new DocumentResponse(200, "正常"));
+        responseList.add(new DocumentResponse(200, "成功"));
         responseList.add(new DocumentResponse(400, "请求有问题").setResponse(DemoVo.class));
         responseList.add(new DocumentResponse(500, "请求有误").setResponse(
                 JsonResult.class, PageInfo.class, new Class[] { DemoVo.class }
