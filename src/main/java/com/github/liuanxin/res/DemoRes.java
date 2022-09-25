@@ -1,4 +1,4 @@
-package com.github.liuanxin.vo;
+package com.github.liuanxin.res;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,7 +18,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DemoVo {
+public class DemoRes {
 
     @ApiReturn(value = "用户 id", example = "123")
     private Long id;
@@ -92,8 +92,8 @@ public class DemoVo {
     }
 
 
-    public static DemoVo testData() {
-        return new DemoVo(
+    public static DemoRes testData() {
+        return new DemoRes(
                 123L, "张三", Gender.Male,
                 new ProductType[] { ProductType.Normal, ProductType.Discount },
                 Arrays.asList(UserType.Normal, UserType.Vip),
@@ -112,8 +112,8 @@ public class DemoVo {
                 new Date()
         );
     }
-    public static List<DemoVo> testListData() {
-        return Arrays.asList(testData(), new DemoVo(
+    public static List<DemoRes> testListData() {
+        return Arrays.asList(testData(), new DemoRes(
                 321L, "李四", Gender.Female,
                 new ProductType[] { ProductType.Discount },
                 Arrays.asList(UserType.Normal, UserType.Vip),
@@ -132,10 +132,10 @@ public class DemoVo {
                 new Date()
         ));
     }
-    public static PageInfo<DemoVo> testPageData() {
+    public static PageInfo<DemoRes> testPageData() {
         return new PageInfo<>(100, testListData());
     }
-    public static Map<String, DemoVo> testMapData() {
-        return new HashMap<String, DemoVo>() {{ put("some", testData()); }};
+    public static Map<String, DemoRes> testMapData() {
+        return new HashMap<String, DemoRes>() {{ put("some", testData()); }};
     }
 }

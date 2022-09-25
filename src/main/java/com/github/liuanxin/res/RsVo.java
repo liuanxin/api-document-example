@@ -1,4 +1,4 @@
-package com.github.liuanxin.vo;
+package com.github.liuanxin.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -5,9 +5,9 @@ import com.github.liuanxin.api.model.DocumentCopyright;
 import com.github.liuanxin.api.model.DocumentParam;
 import com.github.liuanxin.api.model.DocumentResponse;
 import com.github.liuanxin.constant.Const;
+import com.github.liuanxin.res.DemoRes;
 import com.github.liuanxin.util.JsonResult;
 import com.github.liuanxin.util.PageInfo;
-import com.github.liuanxin.vo.DemoVo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,12 +49,12 @@ public class ApiInfoConfig {
         */
         List<DocumentResponse> responseList = new ArrayList<>();
         responseList.add(new DocumentResponse(200, "成功"));
-        responseList.add(new DocumentResponse(400, "请求有问题").setResponse(DemoVo.class));
+        responseList.add(new DocumentResponse(400, "请求有问题").setResponse(DemoRes.class));
         responseList.add(new DocumentResponse(500, "请求有误").setResponse(
-                JsonResult.class, PageInfo.class, new Class[] { DemoVo.class }
+                JsonResult.class, PageInfo.class, new Class[] { DemoRes.class }
         ));
         responseList.add(new DocumentResponse(503, "请求不正确").setResponse(
-                JsonResult.class, List.class, new Class[] { Map.class }, new Class[] { String.class, DemoVo.class }
+                JsonResult.class, List.class, new Class[] { Map.class }, new Class[] { String.class, DemoRes.class }
         ));
         return responseList;
     }

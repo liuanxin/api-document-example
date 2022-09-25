@@ -1,4 +1,4 @@
-package com.github.liuanxin.dto;
+package com.github.liuanxin.req;
 
 import com.github.liuanxin.api.annotation.ApiParam;
 import com.github.liuanxin.enums.Gender;
@@ -11,9 +11,9 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class DemoDto {
+public class DemoReq {
 
-    @ApiParam(value = "用户 id", must = true)
+    @ApiParam(value = "用户 id", required = true)
     private Long userId;
 
     // 文档收集 会将 enum 的 getCode: getValue 信息(没有则拼接 name)附加进说明
@@ -23,7 +23,7 @@ public class DemoDto {
     @ApiParam("商品类别")
     private ProductType[] types;
 
-    @ApiParam(value = "创建时间", datePattern = "yyyy-MM-DD HH:mm:ss", must = true)
+    @ApiParam(value = "创建时间", datePattern = "yyyy-MM-dd HH:mm:ss", required = true)
     private Date createTime;
 
     public void basicCheck() {

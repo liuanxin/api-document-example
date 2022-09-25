@@ -17,6 +17,6 @@ public class PageInfo<T> {
     @ApiReturn("SELECT COUNT(*) FROM ... 的结果")
     private int total;
 
-    @ApiReturn("SELECT ... FROM ... LIMIT 0, 15 的结果")
+    @ApiReturn("SELECT ... FROM ... LIMIT 0, 20 的结果")
     private List<T> list;
 }

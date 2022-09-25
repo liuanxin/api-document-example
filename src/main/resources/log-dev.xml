@@ -2,9 +2,10 @@
 <configuration>
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
-    <property name="CONSOLE_LOG_PATTERN" value="[%d] [${PID:- } %t\\(%logger\\) : %p] %class.%method\\(%file:%line\\) %m%n"/>
+    <property name="CONSOLE_LOG_PATTERN" value="[%d] [${PID:- } %t\\(%logger\\) : %p] %class.%method\\(%file:%line\\) %m%n%n"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
+    <logger name="com.github.liuanxin.api" level="warn"/>
     <logger name="org.springframework" level="warn"/>
     <logger name="org.hibernate" level="warn"/>
     <logger name="com.netflix" level="warn"/>
