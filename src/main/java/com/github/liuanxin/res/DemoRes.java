@@ -65,7 +65,7 @@ public class DemoRes {
         @ApiReturn(value = "一 id", example = "111")
         private Long oneId;
 
-        @ApiReturn(value = "一字符", example = "<span style='color:red;'>富文本</span>")
+        @ApiReturn(value = "一字符", example = "一一一一一")
         private String one;
     }
     @Getter

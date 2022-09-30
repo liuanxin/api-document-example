@@ -17,13 +17,13 @@ public class DemoReq {
     private Long userId;
 
     // 文档收集 会将 enum 的 getCode: getValue 信息(没有则拼接 name)附加进说明
-    @ApiParam(value = "性别", dataType = "int")
+    @ApiParam(value = "性别", dataType = "int", required = true)
     private Gender gender;
 
     @ApiParam("商品类别")
     private ProductType[] types;
 
-    @ApiParam(value = "创建时间", datePattern = "yyyy-MM-dd HH:mm:ss", required = true)
+    @ApiParam(value = "创建时间", datePattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public void basicCheck() {
