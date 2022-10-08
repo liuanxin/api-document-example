@@ -77,7 +77,7 @@ public class RequestBodyInnerReq {
         @ApiParam(value = "其他信息 id", required = true)
         private Long id;
 
-        @ApiParam("详细地址")
-        private String address;
+        @ApiParam("其他信息")
+        private String other;
     }
 }
