@@ -1,6 +1,5 @@
 package com.github.liuanxin.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.liuanxin.api.annotation.*;
 import com.github.liuanxin.constant.Develop;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@ApiTokens
 @RestController
 @RequestMapping("/user")
 @ApiGroup(value = Develop.USER_DESC, index = 1)
@@ -68,11 +66,6 @@ public class UserExampleController {
     @ApiMethod(value = "使用 RequestBody(嵌套)", develop = Develop.USER)
     @PostMapping("/add-info")
     public JsonResult<List<DemoRes>> demo6(@RequestBody RequestBodyInnerReq demoDto) {
-        try {
-            log.info("参数: " + objectMapper.writeValueAsString(demoDto));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
         return JsonResult.success("test6", DemoRes.testListData());
     }
 
