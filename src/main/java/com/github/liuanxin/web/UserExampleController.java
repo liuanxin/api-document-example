@@ -1,6 +1,5 @@
 package com.github.liuanxin.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.liuanxin.api.annotation.*;
 import com.github.liuanxin.constant.Develop;
 import com.github.liuanxin.enums.UserType;
@@ -24,8 +23,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserExampleController {
 
-    private final ObjectMapper objectMapper;
-
     @ApiMethod(value = "用户列表", develop = Develop.USER, index = 1, desc = "管理员查询用户")
     @GetMapping
     public JsonResult<PageInfo<DemoRes>> demo1(DemoReq demoReq, Page page) {
@@ -47,15 +44,6 @@ public class UserExampleController {
     public JsonResult<DemoRes> demo3(@PathVariable("id") @ApiParam(value = "user id", example = "1") Long id) {
         return JsonResult.success("test3", DemoRes.testData());
     }
-
-//    @ApiMethod(value = "用户操作", develop = Develop.USER)
-//    @PostMapping("/operate")
-//    public JsonResult<PageInfo<DemoVo>> demo4(@ApiParam("动作(0 从上往下, 1 从下往上, 默认是 0)") Boolean type) {
-//        if (type != null && !type) {
-//            throw new ServiceException("动作有误");
-//        }
-//        return JsonResult.success("test4");
-//    }
 
     @ApiMethod(value = "使用 RequestBody", develop = Develop.USER)
     @PostMapping("/detail")
