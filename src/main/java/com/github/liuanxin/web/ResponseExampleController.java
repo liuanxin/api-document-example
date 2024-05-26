@@ -40,6 +40,7 @@ public class ResponseExampleController {
                                               @ApiParam(value = "性别", example = "2") Gender gender,
                                               @ApiParam("文件上传1") MultipartFile file1,
                                               @ApiParam(value = "文件上传2", required = true) MultipartFile file2,
+                                              @ApiParam(value = "创建时间", datePattern = "yyyy-MM-dd") Date create,
                                               Page page) {
         if ("abc".equals(abc)) {
             throw new ServiceException("商品名有误");
