@@ -34,9 +34,12 @@ public class ResponseExampleController {
             @ApiResponse(code = 404, msg = "当 name 传入 abc 时返回, 表示没有找到请求")
     })
     @PostMapping("/demo-object")
-    public ResponseEntity<DemoRes> demoObject(@ApiParam(value = "商品名", textarea = true) @RequestParam("name") String abc,
-                                              @ApiParam(value = "头1", paramType = ParamType.Header) @RequestHeader Long id,
+    public ResponseEntity<DemoRes> demoObject(@ApiParam(value = "头1", paramType = ParamType.Header) @RequestHeader Long id,
                                               @ApiParam(value = "头2", paramType = ParamType.Header) @RequestHeader("some") String xyz,
+                                              @ApiParam(value = "长文本", textarea = true) @RequestParam("name") String abc,
+                                              @ApiParam(value = "用户名") @RequestHeader String userName,
+                                              @ApiParam(value = "旧密码") @RequestHeader String password,
+                                              @ApiParam(value = "新密码", dataType = "password") @RequestHeader String newPassword,
                                               @ApiParam(value = "性别", example = "2") Gender gender,
                                               @ApiParam("文件上传1") MultipartFile file1,
                                               @ApiParam(value = "文件上传2", required = true) MultipartFile file2,

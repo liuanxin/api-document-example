@@ -49,11 +49,11 @@ public class ApiInfoConfig {
         */
         List<DocumentResponse> responseList = new ArrayList<>();
         responseList.add(new DocumentResponse(200, "成功"));
-        responseList.add(new DocumentResponse(400, "请求有问题").setResponse(DemoRes.class));
-        responseList.add(new DocumentResponse(500, "请求有误").setResponse(
+        responseList.add(new DocumentResponse(400, "参数有问题").setResponse(DemoRes.class));
+        responseList.add(new DocumentResponse(403, "没有权限").setResponse(
                 JsonResult.class, PageInfo.class, new Class[] { DemoRes.class }
         ));
-        responseList.add(new DocumentResponse(503, "请求不正确").setResponse(
+        responseList.add(new DocumentResponse(500, "请求不正确").setResponse(
                 JsonResult.class, List.class, new Class[] { Map.class }, new Class[] { String.class, DemoRes.class }
         ));
         return responseList;
