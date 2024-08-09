@@ -6,7 +6,7 @@
 *** Run
 
 + 运行 ~WebApplication~, 或者 ~mvn clean package -DskipTests && java -jar target/api-document-example-1.0-SNAPSHOT.jar~
-+ 访问 ~http://127.0.0.1:8080/api.html~ 页面会自动根据当前浏览器环境区分中英文, 可以在请求上加 ~lang=cn | en~ 来手动切换, 
++ 访问 ~http://127.0.0.1:8080/api.html~ 页面会自动根据当前浏览器环境区分中英文, 可以在请求上加 ~lang=cn | en~ 来手动切换
 + 请求后台接口: ~http://127.0.0.1:8080/api-example.html~
 
 最终效果如下
